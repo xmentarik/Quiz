@@ -1,5 +1,7 @@
 package com.xmentarik.quiz.ui.home
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -28,11 +30,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.xmentarik.quiz.BuildConfig
 import com.xmentarik.quiz.R
 import com.xmentarik.quiz.audio.FeedbackSettings
 import com.xmentarik.quiz.data.AppLanguage
@@ -123,6 +127,16 @@ fun HomeScreen(
             ) { Text("⚔️ " + stringResource(R.string.home_challenge), textAlign = TextAlign.Center) }
         }
 
+        val context = LocalContext.current
+        TextButton(
+            onClick = {
+                runCatching {
+                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(BuildConfig.PRIVACY_POLICY_URL)))
+                }
+            },
+        ) {
+            Text("📄 " + stringResource(R.string.privacy_policy), style = MaterialTheme.typography.bodySmall)
+        }
         if (onPrivacyOptions != null) {
             TextButton(onClick = onPrivacyOptions) {
                 Text("🔒 " + stringResource(R.string.privacy_settings), style = MaterialTheme.typography.bodySmall)

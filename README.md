@@ -95,10 +95,9 @@ python3 tools/questions/generate_bank.py build
 - **تصنيف المحتوى:** الإعلانات محدودة بتصنيف «T» (مراهقون فما فوق) لأن التطبيق عائلي.
 
 **قبل النشر على Google Play:**
-1. **app-ads.txt:** ضع ملف `app-ads.txt` في موقعك الإلكتروني (المذكور في صفحة التطبيق على Play)، فيه السطر:
-   `google.com, pub-9412462078913157, DIRECT, f08c47fec0942fa0`
-2. **Play Console:** صرّح بأن التطبيق يحتوي على إعلانات، واملأ قسم **Data safety** (معرّف الإعلانات، البيانات التي يجمعها AdMob).
-3. **سياسة الخصوصية:** رابط سياسة خصوصية إلزامي للتطبيقات التي فيها إعلانات.
+1. **سياسة الخصوصية** (`docs/privacy-policy.html`، بثلاث لغات): املأ الخانات بين معقوفين (`[EMAIL DE CONTACT]`، اسم المطوّر، البلد)، ثم انشرها عبر GitHub Pages: **Settings ← Pages ← Branch: الفرع الرئيسي، المجلد `/docs`**. ستصبح على `https://xmentarik.github.io/Quiz/privacy-policy.html`، وهو الرابط الذي يفتحه التطبيق (يمكن تغييره بـ `PRIVACY_POLICY_URL` في `local.properties`). ضع الرابط نفسه في Play Console.
+2. **app-ads.txt** (`docs/app-ads.txt`): يجب أن يكون في **جذر** موقع المطوّر المذكور في Play Console، مثل `https://xmentarik.github.io/app-ads.txt` (مستودع باسم `xmentarik.github.io`) أو `https://موقعك.com/app-ads.txt`. رابط داخل مجلد فرعي مثل `/Quiz/app-ads.txt` **لا يُقبل**.
+3. **Play Console:** صرّح بأن التطبيق يحتوي على إعلانات، واختر جمهوراً مستهدفاً **13 سنة فما فوق**، واملأ قسم **Data safety** بما يطابق سياسة الخصوصية.
 
 ## Firebase في هذا المشروع
 

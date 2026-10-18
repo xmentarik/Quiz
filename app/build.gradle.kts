@@ -32,6 +32,12 @@ android {
 
         buildConfigField("String", "GEMINI_API_KEY", "\"${localProperties.getProperty("GEMINI_API_KEY", "")}\"")
         buildConfigField("String", "GEMINI_MODEL", "\"${localProperties.getProperty("GEMINI_MODEL", "gemini-flash-latest")}\"")
+        // Published from docs/ with GitHub Pages; override in local.properties if hosted elsewhere.
+        buildConfigField(
+            "String",
+            "PRIVACY_POLICY_URL",
+            "\"${localProperties.getProperty("PRIVACY_POLICY_URL", "https://xmentarik.github.io/Quiz/privacy-policy.html")}\"",
+        )
         // Where question reports go when Firebase is not configured (opens the email app); empty hides the button.
         buildConfigField("String", "REPORT_EMAIL", "\"${localProperties.getProperty("REPORT_EMAIL", "")}\"")
     }

@@ -109,6 +109,7 @@
 
     <!-- Ads -->
     <string name="second_chance">Seconde chance : regardez une pub pour continuer</string>
+    <string name="privacy_policy">Politique de confidentialité</string>
     <string name="privacy_settings">Confidentialité et publicités</string>
     <string name="ad_label">Annonce</string>
 

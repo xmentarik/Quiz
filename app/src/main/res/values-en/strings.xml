@@ -109,6 +109,7 @@
 
     <!-- Ads -->
     <string name="second_chance">Second chance: watch an ad to keep playing</string>
+    <string name="privacy_policy">Privacy policy</string>
     <string name="privacy_settings">Privacy and ad settings</string>
     <string name="ad_label">Ad</string>
 
