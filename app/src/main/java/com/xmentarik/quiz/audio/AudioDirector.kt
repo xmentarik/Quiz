@@ -74,7 +74,8 @@ object AudioDirector {
                 GamePhase.WRONG -> cues += SoundCue.WRONG
                 GamePhase.TIME_UP -> cues += SoundCue.TIME_UP
                 GamePhase.WALKED_AWAY -> cues += SoundCue.WALK_AWAY
-                GamePhase.PLAYING -> Unit
+                // Back in the game after a second chance.
+                GamePhase.PLAYING -> if (before.phase.isOver) cues += SoundCue.LIFELINE
             }
         }
 

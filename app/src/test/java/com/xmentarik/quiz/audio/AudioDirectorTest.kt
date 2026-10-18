@@ -78,6 +78,14 @@ class AudioDirectorTest {
     }
 
     @Test
+    fun secondChancePlaysTheLifelineSoundAndBringsTheMusicBack() {
+        val lost = playing.copy(game = engine.answer(game, 1))
+        val saved = lost.copy(game = engine.secondChance(lost.game!!))
+        assertEquals(listOf(SoundCue.LIFELINE), AudioDirector.cues(lost, saved))
+        assertEquals(MusicTrack.CALM, AudioDirector.music(saved))
+    }
+
+    @Test
     fun lifelinesAndNextQuestion() {
         val fifty = playing.copy(game = engine.use(game, Lifeline.FIFTY_FIFTY))
         assertEquals(listOf(SoundCue.LIFELINE), AudioDirector.cues(playing, fifty))

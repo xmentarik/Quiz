@@ -23,6 +23,7 @@ import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Switch
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -55,6 +56,8 @@ fun HomeScreen(
     onLanguageChange: (AppLanguage) -> Unit,
     onLeaderboard: () -> Unit,
     onChallenges: () -> Unit,
+    /** Shown only where the law requires a way to change ad consent (Europe). */
+    onPrivacyOptions: (() -> Unit)?,
 ) {
     Column(
         modifier = Modifier
@@ -118,6 +121,12 @@ fun HomeScreen(
                 shape = RoundedCornerShape(28.dp),
                 modifier = Modifier.weight(1f),
             ) { Text("⚔️ " + stringResource(R.string.home_challenge), textAlign = TextAlign.Center) }
+        }
+
+        if (onPrivacyOptions != null) {
+            TextButton(onClick = onPrivacyOptions) {
+                Text("🔒 " + stringResource(R.string.privacy_settings), style = MaterialTheme.typography.bodySmall)
+            }
         }
     }
 }

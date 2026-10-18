@@ -25,11 +25,16 @@ data class GameState(
     val friendAdvice: FriendAdvice? = null,
     /** Prize currently held; final once the game is over. */
     val prize: Int = 0,
+    /** The rewarded-ad "second chance" can save a game once. */
+    val secondChanceUsed: Boolean = false,
 ) {
     val currentQuestion: Question get() = questions[index]
 
     val correctCount: Int
         get() = index + if (phase == GamePhase.CORRECT || phase == GamePhase.WON) 1 else 0
+
+    val canGetSecondChance: Boolean
+        get() = !secondChanceUsed && (phase == GamePhase.WRONG || phase == GamePhase.TIME_UP)
 
     fun canUse(lifeline: Lifeline): Boolean =
         phase == GamePhase.PLAYING && lifeline !in usedLifelines &&

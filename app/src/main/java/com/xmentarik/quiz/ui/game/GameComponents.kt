@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -207,6 +208,7 @@ fun RevealPanel(
     canReport: Boolean,
     reported: Boolean,
     onReport: () -> Unit,
+    onSecondChance: (() -> Unit)?,
     onNext: () -> Unit,
     onShowResult: () -> Unit,
 ) {
@@ -235,6 +237,14 @@ fun RevealPanel(
                 canReport -> TextButton(onClick = onReport) {
                     Text("🚩 " + stringResource(R.string.report_button), style = MaterialTheme.typography.bodySmall)
                 }
+            }
+            if (onSecondChance != null) {
+                Button(
+                    onClick = onSecondChance,
+                    shape = RoundedCornerShape(28.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = QuizColors.Correct, contentColor = Color.White),
+                    modifier = Modifier.fillMaxWidth(),
+                ) { Text("📺 " + stringResource(R.string.second_chance)) }
             }
             Button(
                 onClick = if (game.phase == GamePhase.CORRECT) onNext else onShowResult,

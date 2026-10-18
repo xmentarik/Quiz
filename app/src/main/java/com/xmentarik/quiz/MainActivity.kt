@@ -21,6 +21,7 @@ import com.xmentarik.quiz.ui.LocalAppLanguage
 import com.xmentarik.quiz.ui.QuizApp
 import com.xmentarik.quiz.ui.QuizUiState
 import com.xmentarik.quiz.ui.QuizViewModel
+import com.xmentarik.quiz.ui.Screen
 import com.xmentarik.quiz.ui.theme.QuizTheme
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
@@ -42,6 +43,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         audio = GameAudio(this)
         haptics = GameHaptics(this)
+        val ads = (application as QuizApplication).ads
+        ads.isGameInProgress = { viewModel.state.value.screen == Screen.GAME }
+        ads.gatherConsent(this)
         playFeedbackWhileVisible()
         recreateOnLanguageChange()
         setContent {
@@ -51,7 +55,7 @@ class MainActivity : ComponentActivity() {
                 LocalAppLanguage provides appliedLanguage,
             ) {
                 QuizTheme {
-                    QuizApp(viewModel)
+                    QuizApp(viewModel, ads)
                 }
             }
         }

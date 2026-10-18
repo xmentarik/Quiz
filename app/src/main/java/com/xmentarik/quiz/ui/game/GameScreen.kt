@@ -48,6 +48,8 @@ fun GameScreen(
     onConfirmWalkAway: () -> Unit,
     onNext: () -> Unit,
     onShowResult: () -> Unit,
+    /** Non-null when a rewarded ad can save the game. */
+    onSecondChance: (() -> Unit)?,
     onDismissAiNotice: () -> Unit,
     onOpenReport: () -> Unit,
     onSubmitReport: (ReportReason, String) -> Unit,
@@ -89,6 +91,7 @@ fun GameScreen(
                 canReport = canReport,
                 reported = question.id in state.reportedQuestions,
                 onReport = onOpenReport,
+                onSecondChance = onSecondChance,
                 onNext = onNext,
                 onShowResult = onShowResult,
             )

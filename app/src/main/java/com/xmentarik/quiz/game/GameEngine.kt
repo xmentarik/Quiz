@@ -43,6 +43,32 @@ class GameEngine(private val random: Random = Random.Default) {
         return state.copy(phase = GamePhase.TIME_UP, prize = MoneyLadder.guaranteed(state.index))
     }
 
+    /**
+     * Saves a lost game once (after watching a rewarded ad): play resumes on the same step with a fresh
+     * question of the same difficulty, or, without one, the same question minus the wrong answer picked.
+     */
+    fun secondChance(state: GameState): GameState {
+        if (!state.canGetSecondChance) return state
+        val question = state.currentQuestion
+        val replacement = state.reserve.firstOrNull { it.difficulty == question.difficulty }
+        val resumed = state.copy(
+            phase = GamePhase.PLAYING,
+            prize = MoneyLadder.banked(state.index),
+            secondChanceUsed = true,
+        )
+        return if (replacement != null) {
+            resumed.copy(
+                questions = state.questions.toMutableList().also { it[state.index] = replacement },
+                reserve = state.reserve - replacement,
+            ).clearQuestionAids()
+        } else {
+            resumed.copy(
+                selectedOption = null,
+                hiddenOptions = state.hiddenOptions + listOfNotNull(state.selectedOption),
+            )
+        }
+    }
+
     fun use(state: GameState, lifeline: Lifeline): GameState {
         if (!state.canUse(lifeline)) return state
         val used = state.copy(usedLifelines = state.usedLifelines + lifeline)

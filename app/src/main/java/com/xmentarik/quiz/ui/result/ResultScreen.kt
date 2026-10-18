@@ -44,6 +44,7 @@ fun ResultScreen(
     newRecord: Boolean,
     loading: Boolean,
     challengeCode: String?,
+    adSlot: @Composable () -> Unit,
     onPlayAgain: () -> Unit,
     onChallengeRanking: (String) -> Unit,
     onHome: () -> Unit,
@@ -100,6 +101,8 @@ fun ResultScreen(
                 )
             }
         }
+
+        adSlot()
 
         if (newRecord) {
             Text("🎉 " + stringResource(R.string.result_new_record), color = QuizColors.Gold, fontWeight = FontWeight.Bold)

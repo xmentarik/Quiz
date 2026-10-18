@@ -290,7 +290,6 @@ class QuizViewModel(
         viewModelScope.launch {
             delay(REVEAL_DELAY_MS)
             _state.update { it.copy(game = it.game?.let { game -> engine.answer(game, option) }, lockedOption = null) }
-            recordIfOver()
         }
     }
 
@@ -330,7 +329,6 @@ class QuizViewModel(
         _state.update {
             it.copy(game = it.game?.let(engine::walkAway), confirmWalkAway = false, pendingOption = null)
         }
-        recordIfOver()
     }
 
     fun nextQuestion() {
@@ -338,7 +336,21 @@ class QuizViewModel(
         startTimer()
     }
 
-    fun showResult() = _state.update { it.copy(screen = Screen.RESULT, reportOpen = false) }
+    fun showResult() {
+        recordIfOver()
+        _state.update { it.copy(screen = Screen.RESULT, reportOpen = false) }
+    }
+
+    /** Offered after a lost game, for normal games only: challenges must be the same for everyone. */
+    val canOfferSecondChance: Boolean
+        get() = _state.value.let { it.activeChallenge == null && it.game?.canGetSecondChance == true }
+
+    /** Called once the player has watched the rewarded ad to the end. */
+    fun useSecondChance() {
+        if (!canOfferSecondChance) return
+        _state.update { it.copy(game = it.game?.let(engine::secondChance), reportOpen = false) }
+        startTimer()
+    }
 
     // ---------------------------------------------------------------- question reports
 
@@ -407,7 +419,6 @@ class QuizViewModel(
                     _state.update {
                         it.copy(secondsLeft = 0, pendingOption = null, game = it.game?.let(engine::timeUp))
                     }
-                    recordIfOver()
                     return@launch
                 }
                 _state.update { it.copy(secondsLeft = left) }

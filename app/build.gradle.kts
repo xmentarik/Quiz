@@ -37,9 +37,24 @@ android {
     }
 
     buildTypes {
+        // AdMob: Google's sample ids in debug (never risk clicks on real ads), the real ones in release.
+        debug {
+            manifestPlaceholders["admobAppId"] = "ca-app-pub-3940256099942544~3347511713"
+            buildConfigField("String", "AD_UNIT_APP_OPEN", "\"ca-app-pub-3940256099942544/9257395921\"")
+            buildConfigField("String", "AD_UNIT_BANNER", "\"ca-app-pub-3940256099942544/9214589741\"")
+            buildConfigField("String", "AD_UNIT_INTERSTITIAL", "\"ca-app-pub-3940256099942544/1033173712\"")
+            buildConfigField("String", "AD_UNIT_REWARDED", "\"ca-app-pub-3940256099942544/5224354917\"")
+            buildConfigField("String", "AD_UNIT_NATIVE", "\"ca-app-pub-3940256099942544/2247696110\"")
+        }
         release {
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            manifestPlaceholders["admobAppId"] = "ca-app-pub-9412462078913157~9180499717"
+            buildConfigField("String", "AD_UNIT_APP_OPEN", "\"ca-app-pub-9412462078913157/8146444634\"")
+            buildConfigField("String", "AD_UNIT_BANNER", "\"ca-app-pub-9412462078913157/1553116125\"")
+            buildConfigField("String", "AD_UNIT_INTERSTITIAL", "\"ca-app-pub-9412462078913157/2207897257\"")
+            buildConfigField("String", "AD_UNIT_REWARDED", "\"ca-app-pub-9412462078913157/3245646756\"")
+            buildConfigField("String", "AD_UNIT_NATIVE", "\"ca-app-pub-9412462078913157/1932565085\"")
         }
     }
     compileOptions {
@@ -71,6 +86,9 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
     implementation(libs.kotlinx.coroutines.play.services)
+    implementation(libs.play.services.ads)
+    implementation(libs.user.messaging.platform)
+    implementation(libs.androidx.lifecycle.process)
     debugImplementation(libs.androidx.compose.ui.tooling)
 
     testImplementation(libs.junit)

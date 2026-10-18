@@ -16,3 +16,6 @@
 tools/questions/cache/
 tools/questions/*.log
 __pycache__/
+
+# Firebase config: contains API keys, keep it out of the public repository
+app/google-services.json

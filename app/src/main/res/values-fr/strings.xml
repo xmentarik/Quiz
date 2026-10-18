@@ -107,5 +107,10 @@
     <string name="report_failed">Échec de l\'envoi. Réessayez.</string>
     <string name="report_email_subject">Signalement de la question %1$s</string>
 
+    <!-- Ads -->
+    <string name="second_chance">Seconde chance : regardez une pub pour continuer</string>
+    <string name="privacy_settings">Confidentialité et publicités</string>
+    <string name="ad_label">Annonce</string>
+
     <string name="points">%1$s points</string>
 </resources>

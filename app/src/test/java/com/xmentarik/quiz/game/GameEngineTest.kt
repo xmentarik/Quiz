@@ -143,6 +143,39 @@ class GameEngineTest {
     }
 
     @Test
+    fun secondChanceResumesTheGameOnceWithAFreshQuestion() {
+        val lost = advance(3).answerWrong()
+        assertTrue(lost.canGetSecondChance)
+        val saved = engine.secondChance(lost)
+        assertEquals(GamePhase.PLAYING, saved.phase)
+        assertEquals(3, saved.index)
+        assertEquals(MoneyLadder.banked(3), saved.prize)
+        assertEquals("q100", saved.currentQuestion.id) // the easy spare question
+        assertTrue(saved.reserve.isEmpty())
+        // Only once per game.
+        val lostAgain = saved.answerWrong()
+        assertFalse(lostAgain.canGetSecondChance)
+        assertSame(lostAgain, engine.secondChance(lostAgain))
+    }
+
+    @Test
+    fun secondChanceWithoutASpareRemovesTheWrongAnswer() {
+        val lost = advance(12).answerWrong() // no hard spare question in this game
+        val saved = engine.secondChance(lost)
+        assertEquals(lost.currentQuestion, saved.currentQuestion)
+        assertTrue(lost.selectedOption!! in saved.hiddenOptions)
+        assertEquals(null, saved.selectedOption)
+        assertEquals(GamePhase.PLAYING, saved.phase)
+    }
+
+    @Test
+    fun secondChanceIsNotOfferedAfterWinningOrWalkingAway() {
+        assertFalse(advance(14).answerCorrectly().canGetSecondChance)
+        assertFalse(engine.walkAway(advance(3)).canGetSecondChance)
+        assertTrue(engine.timeUp(advance(3)).canGetSecondChance)
+    }
+
+    @Test
     fun timeLimitsMatchTheThreeStages() {
         assertEquals(30, TimeLimits.secondsFor(0))
         assertEquals(45, TimeLimits.secondsFor(5))
