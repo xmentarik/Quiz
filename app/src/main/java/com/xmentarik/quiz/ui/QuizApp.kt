@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -18,6 +19,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.xmentarik.quiz.ads.AdsManager
 import com.xmentarik.quiz.ads.BannerAd
 import com.xmentarik.quiz.ads.NativeAdCard
+import com.xmentarik.quiz.store.StoreLinks
+import kotlinx.coroutines.delay
 import com.xmentarik.quiz.ui.game.GameScreen
 import com.xmentarik.quiz.ui.home.HomeScreen
 import com.xmentarik.quiz.ui.online.ChallengeResultsScreen
@@ -39,6 +42,14 @@ fun QuizApp(viewModel: QuizViewModel, ads: AdsManager) {
     val rewardedReady by ads.rewardedReady.collectAsStateWithLifecycle()
     val privacyOptionsRequired by ads.privacyOptionsRequired.collectAsStateWithLifecycle()
     val activity = LocalContext.current.findActivity()
+
+    // Google Play's review sheet, right after a good game (see ReviewPolicy); Google may still skip it.
+    LaunchedEffect(state.reviewRequested) {
+        if (!state.reviewRequested) return@LaunchedEffect
+        delay(1_500)
+        activity?.let(StoreLinks::requestInAppReview)
+        viewModel.consumeReviewRequest()
+    }
 
     Column(
         Modifier

@@ -45,6 +45,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.xmentarik.quiz.R
 import com.xmentarik.quiz.online.PlayerNames
+import com.xmentarik.quiz.store.StoreLinks
 import com.xmentarik.quiz.ui.OnlineError
 import com.xmentarik.quiz.ui.OnlineUiState
 import com.xmentarik.quiz.ui.formatDuration
@@ -153,7 +154,7 @@ fun ChallengeResultsScreen(online: OnlineUiState, onRefresh: () -> Unit, onBack:
     BackHandler(onBack = onBack)
     val code = online.viewedChallenge ?: return
     val context = LocalContext.current
-    val invite = stringResource(R.string.challenge_invite, code)
+    val invite = stringResource(R.string.challenge_invite, code) + "\n" + StoreLinks.APP_URL
     OnlineScaffold(
         title = "⚔️ " + stringResource(R.string.challenge_results_title, code),
         online = online,

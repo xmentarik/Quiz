@@ -57,6 +57,11 @@ class SettingsStore(context: Context) {
         prefs.edit { putString(KEY_RECENT_QUESTIONS, updated.joinToString(",")) }
     }
 
+    /** When the in-app review prompt was last requested (System.currentTimeMillis), or null. */
+    var lastReviewPromptAt: Long?
+        get() = prefs.getLong(KEY_REVIEW_PROMPT, 0L).takeIf { it > 0L }
+        set(value) = prefs.edit { putLong(KEY_REVIEW_PROMPT, value ?: 0L) }
+
     /** Remembers a challenge code and returns the updated list. */
     fun rememberChallenge(code: String): List<String> {
         val updated = (listOf(code) + myChallenges.filter { it != code }).take(MAX_CHALLENGES)
@@ -73,6 +78,7 @@ class SettingsStore(context: Context) {
         const val KEY_CHALLENGES = "my_challenges"
         const val MAX_CHALLENGES = 20
         const val KEY_RECENT_QUESTIONS = "recent_questions"
+        const val KEY_REVIEW_PROMPT = "review_prompt_at"
         /** About 60 games: long enough to never see a repeat soon, short enough to cycle the whole bank. */
         const val MAX_RECENT_QUESTIONS = 900
     }

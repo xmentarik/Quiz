@@ -34,6 +34,7 @@ import com.xmentarik.quiz.data.PlayerStats
 import com.xmentarik.quiz.game.GamePhase
 import com.xmentarik.quiz.game.GameState
 import com.xmentarik.quiz.game.MoneyLadder
+import com.xmentarik.quiz.store.StoreLinks
 import com.xmentarik.quiz.ui.formatPrize
 import com.xmentarik.quiz.ui.theme.QuizColors
 
@@ -52,7 +53,7 @@ fun ResultScreen(
     BackHandler(onBack = onHome)
     val context = LocalContext.current
     val prize = formatPrize(game.prize)
-    val shareText = stringResource(R.string.result_share_text, prize)
+    val shareText = stringResource(R.string.result_share_text, prize) + "\n" + StoreLinks.APP_URL
     val (emoji, title) = when (game.phase) {
         GamePhase.WON -> "🏆" to R.string.result_won
         GamePhase.WALKED_AWAY -> "💼" to R.string.result_walked_away

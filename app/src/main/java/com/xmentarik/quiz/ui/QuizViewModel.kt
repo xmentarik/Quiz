@@ -27,6 +27,7 @@ import com.xmentarik.quiz.online.OnlineService
 import com.xmentarik.quiz.online.PlayerNames
 import com.xmentarik.quiz.online.QuestionReport
 import com.xmentarik.quiz.online.ReportReason
+import com.xmentarik.quiz.store.ReviewPolicy
 import kotlin.coroutines.cancellation.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -345,6 +346,8 @@ class QuizViewModel(
     val canOfferSecondChance: Boolean
         get() = _state.value.let { it.activeChallenge == null && it.game?.canGetSecondChance == true }
 
+    fun consumeReviewRequest() = _state.update { it.copy(reviewRequested = false) }
+
     /** Called once the player has watched the rewarded ad to the end. */
     fun useSecondChance() {
         if (!canOfferSecondChance) return
@@ -436,7 +439,10 @@ class QuizViewModel(
         if (!game.phase.isOver || gameRecorded) return
         gameRecorded = true
         val record = statsStore.recordGame(game.prize, wonMillion = game.prize == MoneyLadder.top)
-        _state.update { it.copy(newRecord = record) }
+        val now = System.currentTimeMillis()
+        val askReview = ReviewPolicy.shouldAsk(statsStore.stats.value.gamesPlayed, game.prize, settingsStore.lastReviewPromptAt, now)
+        if (askReview) settingsStore.lastReviewPromptAt = now
+        _state.update { it.copy(newRecord = record, reviewRequested = askReview) }
         publishOnline(game.prize, game.correctCount)
     }
 

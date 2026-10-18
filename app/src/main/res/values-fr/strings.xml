@@ -109,6 +109,10 @@
 
     <!-- Ads -->
     <string name="second_chance">Seconde chance : regardez une pub pour continuer</string>
+    <string name="rate_app">Noter l\'app</string>
+    <string name="share_app">Partager</string>
+    <string name="more_apps">Nos applis</string>
+    <string name="share_app_text">Essaie « La Route du Million » : un quiz de culture générale avec plus de 1000 questions, 15 questions te séparent du million ! %1$s</string>
     <string name="privacy_policy">Politique de confidentialité</string>
     <string name="privacy_settings">Confidentialité et publicités</string>
     <string name="ad_label">Annonce</string>

@@ -30,6 +30,8 @@ data class QuizUiState(
     val reportStatus: ReportStatus? = null,
     /** Ids of the questions reported during this session, so each is reported once. */
     val reportedQuestions: Set<String> = emptySet(),
+    /** Set after a good game: the UI shows Google Play's review sheet once, then clears it. */
+    val reviewRequested: Boolean = false,
     /** Code of the friends challenge being played, null for a normal game. */
     val activeChallenge: String? = null,
     val online: OnlineUiState = OnlineUiState(),

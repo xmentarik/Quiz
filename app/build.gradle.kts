@@ -32,11 +32,11 @@ android {
 
         buildConfigField("String", "GEMINI_API_KEY", "\"${localProperties.getProperty("GEMINI_API_KEY", "")}\"")
         buildConfigField("String", "GEMINI_MODEL", "\"${localProperties.getProperty("GEMINI_MODEL", "gemini-flash-latest")}\"")
-        // Published from docs/ with GitHub Pages; override in local.properties if hosted elsewhere.
+        // The developer's Google Sites page (a copy lives in docs/privacy-policy.html); override in local.properties.
         buildConfigField(
             "String",
             "PRIVACY_POLICY_URL",
-            "\"${localProperties.getProperty("PRIVACY_POLICY_URL", "https://xmentarik.github.io/Quiz/privacy-policy.html")}\"",
+            "\"${localProperties.getProperty("PRIVACY_POLICY_URL", "https://sites.google.com/view/roadtoamillion")}\"",
         )
         // Where question reports go when Firebase is not configured (opens the email app); empty hides the button.
         buildConfigField("String", "REPORT_EMAIL", "\"${localProperties.getProperty("REPORT_EMAIL", "")}\"")
@@ -94,6 +94,7 @@ dependencies {
     implementation(libs.kotlinx.coroutines.play.services)
     implementation(libs.play.services.ads)
     implementation(libs.user.messaging.platform)
+    implementation(libs.play.review)
     implementation(libs.androidx.lifecycle.process)
     debugImplementation(libs.androidx.compose.ui.tooling)
 

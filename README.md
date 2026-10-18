@@ -94,10 +94,13 @@ python3 tools/questions/generate_bank.py build
 - **الموافقة (UMP):** يظهر نموذج Google للموافقة تلقائياً للاعبين في أوروبا والمملكة المتحدة، وهو إلزامي قانونياً. يظهر لهم أيضاً زر «إعدادات الخصوصية والإعلانات» في الشاشة الرئيسية. فعّل رسالة GDPR في **AdMob ← Privacy & messaging**.
 - **تصنيف المحتوى:** الإعلانات محدودة بتصنيف «T» (مراهقون فما فوق) لأن التطبيق عائلي.
 
-**قبل النشر على Google Play:**
-1. **سياسة الخصوصية** (`docs/privacy-policy.html`، بثلاث لغات): املأ الخانات بين معقوفين (`[EMAIL DE CONTACT]`، اسم المطوّر، البلد)، ثم انشرها عبر GitHub Pages: **Settings ← Pages ← Branch: الفرع الرئيسي، المجلد `/docs`**. ستصبح على `https://xmentarik.github.io/Quiz/privacy-policy.html`، وهو الرابط الذي يفتحه التطبيق (يمكن تغييره بـ `PRIVACY_POLICY_URL` في `local.properties`). ضع الرابط نفسه في Play Console.
-2. **app-ads.txt** (`docs/app-ads.txt`): يجب أن يكون في **جذر** موقع المطوّر المذكور في Play Console، مثل `https://xmentarik.github.io/app-ads.txt` (مستودع باسم `xmentarik.github.io`) أو `https://موقعك.com/app-ads.txt`. رابط داخل مجلد فرعي مثل `/Quiz/app-ads.txt` **لا يُقبل**.
-3. **Play Console:** صرّح بأن التطبيق يحتوي على إعلانات، واختر جمهوراً مستهدفاً **13 سنة فما فوق**، واملأ قسم **Data safety** بما يطابق سياسة الخصوصية.
+**روابط النشر:**
+- سياسة الخصوصية: https://sites.google.com/view/roadtoamillion (يفتحها التطبيق، ويمكن تغييرها بـ `PRIVACY_POLICY_URL` في `local.properties`). نسخة منها في `docs/privacy-policy.html`.
+- app-ads.txt: https://q9b072b6e.app-ads-txt.com/app-ads.txt — يجب أن يكون **موقع المطوّر في Play Console** هو `https://q9b072b6e.app-ads-txt.com` حتى يجده AdMob.
+- صفحة المطوّر: https://play.google.com/store/apps/dev?id=8158152773099656487
+
+**أزرار المتجر** (الشاشة الرئيسية): ⭐ قيّم التطبيق (صفحة التطبيق في Play)، 📤 شارك التطبيق، 📱 تطبيقاتنا (صفحة المطوّر). وعند مشاركة نتيجة أو تحدٍّ يُضاف رابط التطبيق تلقائياً.
+**طلب التقييم داخل التطبيق** (Google Play In-App Review): بعد مباراة جيدة (32,000 فأكثر) ابتداءً من المباراة الثالثة، ومرة في الشهر على الأكثر.
 
 ## Firebase في هذا المشروع
 

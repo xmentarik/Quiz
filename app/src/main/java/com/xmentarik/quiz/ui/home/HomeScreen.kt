@@ -41,6 +41,7 @@ import com.xmentarik.quiz.R
 import com.xmentarik.quiz.audio.FeedbackSettings
 import com.xmentarik.quiz.data.AppLanguage
 import com.xmentarik.quiz.data.PlayerStats
+import com.xmentarik.quiz.store.StoreLinks
 import com.xmentarik.quiz.ui.LocalAppLanguage
 import com.xmentarik.quiz.ui.QuizUiState
 import com.xmentarik.quiz.ui.formatPrize
@@ -128,6 +129,18 @@ fun HomeScreen(
         }
 
         val context = LocalContext.current
+        val shareAppText = stringResource(R.string.share_app_text, StoreLinks.APP_URL)
+        Row(horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterHorizontally), modifier = Modifier.fillMaxWidth()) {
+            TextButton(onClick = { StoreLinks.openAppPage(context) }) {
+                Text("⭐ " + stringResource(R.string.rate_app), style = MaterialTheme.typography.bodySmall)
+            }
+            TextButton(onClick = { StoreLinks.share(context, shareAppText) }) {
+                Text("📤 " + stringResource(R.string.share_app), style = MaterialTheme.typography.bodySmall)
+            }
+            TextButton(onClick = { StoreLinks.openDeveloperPage(context) }) {
+                Text("📱 " + stringResource(R.string.more_apps), style = MaterialTheme.typography.bodySmall)
+            }
+        }
         TextButton(
             onClick = {
                 runCatching {
