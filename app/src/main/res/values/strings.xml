@@ -12,6 +12,8 @@
     <string name="home_ai_missing_key">أضف GEMINI_API_KEY في ملف local.properties لتفعيل هذه الميزة</string>
     <string name="home_topic">الموضوع</string>
     <string name="home_play">ابدأ اللعب</string>
+    <string name="home_sound">المؤثرات</string>
+    <string name="home_music">الموسيقى</string>
     <string name="home_loading">جارٍ تحضير الأسئلة…</string>
 
     <!-- Game -->

@@ -6,13 +6,14 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.xmentarik.quiz.QuizApplication
+import com.xmentarik.quiz.audio.AudioSettings
 import com.xmentarik.quiz.data.PlayerStats
 import com.xmentarik.quiz.data.QuestionRepository
 import com.xmentarik.quiz.data.QuestionSource
+import com.xmentarik.quiz.data.SettingsStore
 import com.xmentarik.quiz.data.StatsStore
 import com.xmentarik.quiz.game.GameEngine
 import com.xmentarik.quiz.game.GamePhase
-import com.xmentarik.quiz.game.GameState
 import com.xmentarik.quiz.game.Lifeline
 import com.xmentarik.quiz.game.MoneyLadder
 import com.xmentarik.quiz.game.TimeLimits
@@ -24,36 +25,10 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-enum class Screen { HOME, GAME, RESULT }
-
-enum class LifelineDialog { AUDIENCE, FRIEND }
-
-val QuizTopics = listOf(
-    "ثقافة عامة", "علوم", "تاريخ", "جغرافيا", "رياضة", "دين وحضارة إسلامية",
-    "تقنية وبرمجة", "أدب ولغة عربية", "أفلام ومسلسلات", "المغرب العربي",
-)
-
-data class QuizUiState(
-    val screen: Screen = Screen.HOME,
-    val loading: Boolean = false,
-    val aiAvailable: Boolean = false,
-    val useAi: Boolean = false,
-    val topic: String = QuizTopics.first(),
-    val game: GameState? = null,
-    /** Option tapped but not yet confirmed as the final answer. */
-    val pendingOption: Int? = null,
-    /** Final answer waiting for the suspenseful reveal. */
-    val lockedOption: Int? = null,
-    val secondsLeft: Int? = null,
-    val dialog: LifelineDialog? = null,
-    val confirmWalkAway: Boolean = false,
-    val aiFallbackNotice: Boolean = false,
-    val newRecord: Boolean = false,
-)
-
 class QuizViewModel(
     private val repository: QuestionRepository,
     private val statsStore: StatsStore,
+    private val settingsStore: SettingsStore,
     private val engine: GameEngine = GameEngine(),
 ) : ViewModel() {
 
@@ -62,6 +37,7 @@ class QuizViewModel(
     )
     val state: StateFlow<QuizUiState> = _state.asStateFlow()
     val stats: StateFlow<PlayerStats> = statsStore.stats
+    val audioSettings: StateFlow<AudioSettings> = settingsStore.audio
 
     private var timerJob: Job? = null
     private var loadJob: Job? = null
@@ -70,6 +46,12 @@ class QuizViewModel(
     fun setUseAi(enabled: Boolean) = _state.update { it.copy(useAi = enabled && it.aiAvailable) }
 
     fun setTopic(topic: String) = _state.update { it.copy(topic = topic) }
+
+    fun setSoundEnabled(enabled: Boolean) =
+        settingsStore.updateAudio(audioSettings.value.copy(soundEnabled = enabled))
+
+    fun setMusicEnabled(enabled: Boolean) =
+        settingsStore.updateAudio(audioSettings.value.copy(musicEnabled = enabled))
 
     fun startGame() {
         if (_state.value.loading) return
@@ -217,7 +199,7 @@ class QuizViewModel(
         val Factory = viewModelFactory {
             initializer {
                 val app = this[APPLICATION_KEY] as QuizApplication
-                QuizViewModel(app.questionRepository, app.statsStore)
+                QuizViewModel(app.questionRepository, app.statsStore, app.settingsStore)
             }
         }
     }

@@ -32,6 +32,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.xmentarik.quiz.R
+import com.xmentarik.quiz.audio.AudioSettings
 import com.xmentarik.quiz.data.PlayerStats
 import com.xmentarik.quiz.ui.QuizTopics
 import com.xmentarik.quiz.ui.QuizUiState
@@ -42,9 +43,12 @@ import com.xmentarik.quiz.ui.theme.QuizColors
 fun HomeScreen(
     state: QuizUiState,
     stats: PlayerStats,
+    audioSettings: AudioSettings,
     onUseAiChange: (Boolean) -> Unit,
     onTopicChange: (String) -> Unit,
     onPlay: () -> Unit,
+    onSoundChange: (Boolean) -> Unit,
+    onMusicChange: (Boolean) -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -71,6 +75,7 @@ fun HomeScreen(
 
         StatsCard(stats)
         AiCard(state, onUseAiChange, onTopicChange)
+        AudioRow(audioSettings, onSoundChange, onMusicChange)
 
         Button(
             onClick = onPlay,
@@ -110,6 +115,26 @@ private fun StatsCard(stats: PlayerStats) {
             Text(stringResource(R.string.home_games_played, stats.gamesPlayed))
             Text(stringResource(R.string.home_million_wins, stats.millionWins))
         }
+    }
+}
+
+@Composable
+private fun AudioRow(
+    settings: AudioSettings,
+    onSoundChange: (Boolean) -> Unit,
+    onMusicChange: (Boolean) -> Unit,
+) {
+    Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+        FilterChip(
+            selected = settings.soundEnabled,
+            onClick = { onSoundChange(!settings.soundEnabled) },
+            label = { Text((if (settings.soundEnabled) "🔊 " else "🔇 ") + stringResource(R.string.home_sound)) },
+        )
+        FilterChip(
+            selected = settings.musicEnabled,
+            onClick = { onMusicChange(!settings.musicEnabled) },
+            label = { Text((if (settings.musicEnabled) "🎵 " else "🔇 ") + stringResource(R.string.home_music)) },
+        )
     }
 }
 
