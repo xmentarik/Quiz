@@ -46,6 +46,10 @@ fun QuizApp(viewModel: QuizViewModel) {
                     onNext = viewModel::nextQuestion,
                     onShowResult = viewModel::showResult,
                     onDismissAiNotice = viewModel::dismissAiNotice,
+                    onOpenReport = viewModel::openReport,
+                    onSubmitReport = viewModel::submitReport,
+                    onReportedByEmail = viewModel::markReported,
+                    onDismissReport = viewModel::dismissReport,
                 )
                 screen == Screen.RESULT && game != null -> ResultScreen(
                     game = game,

@@ -23,11 +23,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.xmentarik.quiz.BuildConfig
 import com.xmentarik.quiz.R
 import com.xmentarik.quiz.game.GamePhase
 import com.xmentarik.quiz.game.GameState
 import com.xmentarik.quiz.game.Lifeline
 import com.xmentarik.quiz.game.MoneyLadder
+import com.xmentarik.quiz.online.ReportReason
 import com.xmentarik.quiz.ui.LifelineDialog
 import com.xmentarik.quiz.ui.LocalAppLanguage
 import com.xmentarik.quiz.ui.QuizUiState
@@ -47,12 +49,17 @@ fun GameScreen(
     onNext: () -> Unit,
     onShowResult: () -> Unit,
     onDismissAiNotice: () -> Unit,
+    onOpenReport: () -> Unit,
+    onSubmitReport: (ReportReason, String) -> Unit,
+    onReportedByEmail: (String) -> Unit,
+    onDismissReport: () -> Unit,
 ) {
     BackHandler(enabled = game.phase == GamePhase.PLAYING) { onRequestWalkAway() }
     var showLadder by rememberSaveable { mutableStateOf(false) }
     val question = game.currentQuestion
     val labels = LocalAppLanguage.current.optionLabels
     val banked = formatPrize(MoneyLadder.banked(game.index))
+    val canReport = state.online.available || BuildConfig.REPORT_EMAIL.isNotBlank()
 
     Column(
         modifier = Modifier
@@ -77,7 +84,14 @@ fun GameScreen(
         }
 
         when {
-            game.phase != GamePhase.PLAYING -> RevealPanel(game = game, onNext = onNext, onShowResult = onShowResult)
+            game.phase != GamePhase.PLAYING -> RevealPanel(
+                game = game,
+                canReport = canReport,
+                reported = question.id in state.reportedQuestions,
+                onReport = onOpenReport,
+                onNext = onNext,
+                onShowResult = onShowResult,
+            )
             state.lockedOption == null -> {
                 if (state.pendingOption != null) {
                     Button(
@@ -103,6 +117,19 @@ fun GameScreen(
         LifelineDialog.AUDIENCE -> game.audienceVotes?.let { AudienceDialog(it, game.hiddenOptions, onDismissDialog) }
         LifelineDialog.FRIEND -> game.friendAdvice?.let { FriendDialog(it, question, onDismissDialog) }
         null -> Unit
+    }
+
+    if (state.reportOpen) {
+        ReportDialog(
+            question = question,
+            selectedOption = game.selectedOption,
+            status = state.reportStatus,
+            canSendOnline = state.online.available,
+            reportEmail = BuildConfig.REPORT_EMAIL,
+            onSubmit = onSubmitReport,
+            onSentByEmail = { onReportedByEmail(question.id) },
+            onDismiss = onDismissReport,
+        )
     }
 
     if (state.confirmWalkAway) {

@@ -26,8 +26,8 @@ object QuestionSetBuilder {
         val seenTexts = mutableSetOf<String>()
 
         for (level in Question.MIN_DIFFICULTY..Question.MAX_DIFFICULTY) {
-            val candidates = (pool.levelShuffled(level, random) + fallback.levelShuffled(level, random))
-                .sortedBy { it.id in recentlySeen } // stable: keeps the shuffle within each group
+            // Unseen before seen within the pool, and the whole pool before the fallback.
+            val candidates = (pool.levelShuffled(level, random, recentlySeen) + fallback.levelShuffled(level, random, recentlySeen))
                 .filter { seenTexts.add(it.text.trim()) }
             check(candidates.size >= PER_LEVEL) {
                 "Not enough questions for difficulty $level: ${candidates.size} < $PER_LEVEL"
@@ -38,6 +38,21 @@ object QuestionSetBuilder {
         return QuestionSet(main, reserve)
     }
 
-    private fun List<Question>.levelShuffled(level: Int, random: Random) =
-        filter { it.isValid && it.difficulty == level }.shuffled(random)
+    /** A game on one [topic] (all topics when null); topped up from the rest of [bank] if the topic runs short. */
+    fun buildForTopic(
+        bank: List<Question>,
+        topic: Int?,
+        random: Random = Random.Default,
+        recentlySeen: Set<String> = emptySet(),
+    ): QuestionSet =
+        if (topic == null) {
+            build(bank, random, recentlySeen = recentlySeen)
+        } else {
+            build(bank.filter { it.topic == topic }, random, fallback = bank, recentlySeen = recentlySeen)
+        }
+
+    private fun List<Question>.levelShuffled(level: Int, random: Random, recentlySeen: Set<String>) =
+        filter { it.isValid && it.difficulty == level }
+            .shuffled(random)
+            .sortedBy { it.id in recentlySeen } // stable sort: keeps the shuffle within each group
 }

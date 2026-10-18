@@ -32,6 +32,8 @@ android {
 
         buildConfigField("String", "GEMINI_API_KEY", "\"${localProperties.getProperty("GEMINI_API_KEY", "")}\"")
         buildConfigField("String", "GEMINI_MODEL", "\"${localProperties.getProperty("GEMINI_MODEL", "gemini-flash-latest")}\"")
+        // Where question reports go when Firebase is not configured (opens the email app); empty hides the button.
+        buildConfigField("String", "REPORT_EMAIL", "\"${localProperties.getProperty("REPORT_EMAIL", "")}\"")
     }
 
     buildTypes {

@@ -202,7 +202,14 @@ fun AnswerOption(label: String, text: String, status: OptionStatus, onClick: () 
 }
 
 @Composable
-fun RevealPanel(game: GameState, onNext: () -> Unit, onShowResult: () -> Unit) {
+fun RevealPanel(
+    game: GameState,
+    canReport: Boolean,
+    reported: Boolean,
+    onReport: () -> Unit,
+    onNext: () -> Unit,
+    onShowResult: () -> Unit,
+) {
     val (title, color) = when (game.phase) {
         GamePhase.CORRECT, GamePhase.WON -> R.string.game_correct to QuizColors.Correct
         GamePhase.TIME_UP -> R.string.game_time_up to QuizColors.Wrong
@@ -219,6 +226,16 @@ fun RevealPanel(game: GameState, onNext: () -> Unit, onShowResult: () -> Unit) {
             Text(stringResource(title), color = color, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleMedium)
             val explanation = game.currentQuestion.explanation
             if (explanation.isNotBlank()) Text("💡 $explanation", color = QuizColors.TextSecondary)
+            when {
+                reported -> Text(
+                    "✓ " + stringResource(R.string.report_sent),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = QuizColors.Correct,
+                )
+                canReport -> TextButton(onClick = onReport) {
+                    Text("🚩 " + stringResource(R.string.report_button), style = MaterialTheme.typography.bodySmall)
+                }
+            }
             Button(
                 onClick = if (game.phase == GamePhase.CORRECT) onNext else onShowResult,
                 shape = RoundedCornerShape(28.dp),

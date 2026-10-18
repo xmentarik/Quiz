@@ -1,6 +1,7 @@
 package com.xmentarik.quiz.online
 
 import android.content.Context
+import com.xmentarik.quiz.BuildConfig
 import com.google.firebase.Firebase
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.auth
@@ -16,6 +17,7 @@ import kotlin.random.Random
  * - leaderboard/{uid}: name, bestPrize, gamesPlayed, millionWins, updatedAt
  * - challenges/{code}: creatorId, creatorName, language, payload (JSON), createdAt
  * - challenges/{code}/results/{uid}: name, prize, correctCount, durationSeconds, finishedAt
+ * - reports/{auto id}: question as shown, reason, comment, reporterId, createdAt (readable from the console only)
  */
 class FirebaseOnlineService(context: Context) : OnlineService {
     override val isAvailable: Boolean = FirebaseApp.getApps(context).isNotEmpty()
@@ -141,12 +143,32 @@ class FirebaseOnlineService(context: Context) : OnlineService {
         )
     }
 
+    override suspend fun submitReport(report: QuestionReport) {
+        val uid = playerId()
+        db.collection(REPORTS).add(
+            mapOf(
+                "questionId" to report.questionId,
+                "language" to report.language,
+                "text" to report.text,
+                "options" to report.options,
+                "correctIndex" to report.correctIndex.toLong(),
+                "selectedOption" to report.selectedOption?.toLong(),
+                "reason" to report.reason.name,
+                "comment" to report.comment,
+                "appVersion" to BuildConfig.VERSION_NAME,
+                "reporterId" to uid,
+                "createdAt" to FieldValue.serverTimestamp(),
+            ),
+        ).await()
+    }
+
     private fun results(code: String) = db.collection(CHALLENGES).document(code).collection(RESULTS)
 
     private companion object {
         const val LEADERBOARD = "leaderboard"
         const val CHALLENGES = "challenges"
         const val RESULTS = "results"
+        const val REPORTS = "reports"
         const val CODE_ATTEMPTS = 5
     }
 }

@@ -86,6 +86,26 @@ object Rankings {
     )
 }
 
+enum class ReportReason { WRONG_ANSWER, AMBIGUOUS, TYPO_OR_TRANSLATION, OTHER }
+
+/** A player's report about a question, exactly as it was shown to them (options are shuffled per game). */
+data class QuestionReport(
+    val questionId: String,
+    val language: String,
+    val text: String,
+    val options: List<String>,
+    val correctIndex: Int,
+    val selectedOption: Int?,
+    val reason: ReportReason,
+    val comment: String,
+) {
+    companion object {
+        const val MAX_COMMENT_LENGTH = 500
+
+        fun cleanComment(raw: String): String = raw.trim().take(MAX_COMMENT_LENGTH)
+    }
+}
+
 /** Online features, implemented with Firebase in the app and with fakes in tests. */
 interface OnlineService {
     /** False when the app was built without a Firebase configuration. */
@@ -110,4 +130,6 @@ interface OnlineService {
     suspend fun submitChallengeResult(code: String, result: ChallengeResult)
 
     suspend fun challengeResults(code: String): List<ChallengeResult>
+
+    suspend fun submitReport(report: QuestionReport)
 }

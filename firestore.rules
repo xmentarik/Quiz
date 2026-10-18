@@ -33,6 +33,26 @@ service cloud.firestore {
       allow delete: if false;
     }
 
+    // Question reports: anyone signed in can file one; only the console (admin) can read them.
+    match /reports/{reportId} {
+      allow create: if signedIn()
+        && request.resource.data.keys().hasOnly(['questionId', 'language', 'text', 'options', 'correctIndex',
+                                                 'selectedOption', 'reason', 'comment', 'appVersion',
+                                                 'reporterId', 'createdAt'])
+        && request.resource.data.reporterId == request.auth.uid
+        && request.resource.data.questionId is string && request.resource.data.questionId.size() <= 40
+        && request.resource.data.language in ['ar', 'fr', 'en']
+        && request.resource.data.text is string && request.resource.data.text.size() <= 1000
+        && request.resource.data.options is list && request.resource.data.options.size() == 4
+        && request.resource.data.correctIndex is int
+        && (request.resource.data.selectedOption == null || request.resource.data.selectedOption is int)
+        && request.resource.data.reason in ['WRONG_ANSWER', 'AMBIGUOUS', 'TYPO_OR_TRANSLATION', 'OTHER']
+        && request.resource.data.comment is string && request.resource.data.comment.size() <= 500
+        && request.resource.data.appVersion is string && request.resource.data.appVersion.size() <= 20
+        && request.resource.data.createdAt == request.time;
+      allow read, update, delete: if false;
+    }
+
     // Challenges are immutable once created.
     match /challenges/{code} {
       allow read: if signedIn();

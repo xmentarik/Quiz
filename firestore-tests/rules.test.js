@@ -107,6 +107,30 @@ describe('challenges', () => {
   });
 });
 
+const report = (uid, overrides = {}) => ({
+  questionId: 'g3-3-0-01', language: 'fr', text: 'Quel est le deuxième sommet du Maroc ?',
+  options: ['Ouanoukrim', "M'Goun", 'Jbel Ayachi', 'Jbel Sirwa'], correctIndex: 0, selectedOption: 1,
+  reason: 'WRONG_ANSWER', comment: '', appVersion: '0.1.0', reporterId: uid, createdAt: serverTimestamp(), ...overrides,
+});
+
+describe('question reports', () => {
+  test('a signed-in player can file a report, but nobody can read it from the app', async () => {
+    const db = as('bob');
+    await assertSucceeds(setDoc(doc(db, 'reports/r1'), report('bob')));
+    await assertSucceeds(setDoc(doc(db, 'reports/r2'), report('bob', { selectedOption: null })));
+    await assertFails(getDoc(doc(db, 'reports/r1')));
+    await assertFails(updateDoc(doc(db, 'reports/r1'), { comment: 'edited' }));
+  });
+
+  test('anonymous, spoofed or oversized reports are rejected', async () => {
+    await assertFails(setDoc(doc(anonymous(), 'reports/r1'), report('bob')));
+    await assertFails(setDoc(doc(as('mallory'), 'reports/r1'), report('bob')));
+    await assertFails(setDoc(doc(as('bob'), 'reports/r1'), report('bob', { comment: 'x'.repeat(501) })));
+    await assertFails(setDoc(doc(as('bob'), 'reports/r1'), report('bob', { reason: 'SPAM' })));
+    await assertFails(setDoc(doc(as('bob'), 'reports/r1'), report('bob', { options: ['a', 'b'] })));
+  });
+});
+
 describe('challenge results', () => {
   test('each player posts one result for themselves', async () => {
     await seedChallenge();

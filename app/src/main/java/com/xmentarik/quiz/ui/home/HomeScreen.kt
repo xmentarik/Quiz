@@ -47,7 +47,7 @@ fun HomeScreen(
     stats: PlayerStats,
     feedbackSettings: FeedbackSettings,
     onUseAiChange: (Boolean) -> Unit,
-    onTopicChange: (Int) -> Unit,
+    onTopicChange: (Int?) -> Unit,
     onPlay: () -> Unit,
     onSoundChange: (Boolean) -> Unit,
     onMusicChange: (Boolean) -> Unit,
@@ -80,7 +80,8 @@ fun HomeScreen(
         )
 
         StatsCard(stats)
-        AiCard(state, onUseAiChange, onTopicChange)
+        TopicCard(state, onTopicChange)
+        AiCard(state, onUseAiChange)
         FeedbackRow(feedbackSettings, onSoundChange, onMusicChange, onVibrationChange)
 
         Button(
@@ -184,10 +185,37 @@ private fun FeedbackRow(
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
+private fun TopicCard(state: QuizUiState, onTopicChange: (Int?) -> Unit) {
+    Card(
+        colors = CardDefaults.cardColors(containerColor = QuizColors.OptionBackground),
+        modifier = Modifier.fillMaxWidth(),
+    ) {
+        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Text(stringResource(R.string.home_topic), fontWeight = FontWeight.Bold)
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                FilterChip(
+                    selected = state.topicIndex == null,
+                    onClick = { onTopicChange(null) },
+                    label = { Text("🎲 " + stringResource(R.string.topic_all)) },
+                    enabled = !state.loading,
+                )
+                LocalAppLanguage.current.topics.forEachIndexed { index, topic ->
+                    FilterChip(
+                        selected = index == state.topicIndex,
+                        onClick = { onTopicChange(index) },
+                        label = { Text(topic) },
+                        enabled = !state.loading,
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
 private fun AiCard(
     state: QuizUiState,
     onUseAiChange: (Boolean) -> Unit,
-    onTopicChange: (Int) -> Unit,
 ) {
     Card(
         colors = CardDefaults.cardColors(containerColor = QuizColors.OptionBackground),
@@ -210,19 +238,6 @@ private fun AiCard(
                     onCheckedChange = onUseAiChange,
                     enabled = state.aiAvailable && !state.loading,
                 )
-            }
-            if (state.useAi) {
-                Text(stringResource(R.string.home_topic), style = MaterialTheme.typography.labelLarge)
-                FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    LocalAppLanguage.current.topics.forEachIndexed { index, topic ->
-                        FilterChip(
-                            selected = index == state.topicIndex,
-                            onClick = { onTopicChange(index) },
-                            label = { Text(topic) },
-                            enabled = !state.loading,
-                        )
-                    }
-                }
             }
         }
     }

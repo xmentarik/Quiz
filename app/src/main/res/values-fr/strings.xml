@@ -93,5 +93,19 @@
     <string name="error_not_found">Aucun défi avec ce code.</string>
     <string name="error_already_played">Vous avez déjà joué ce défi : voici les résultats.</string>
 
+    <!-- Topics and reports -->
+    <string name="topic_all">Tous les thèmes</string>
+    <string name="report_button">Signaler une erreur</string>
+    <string name="report_title">Quel est le problème avec cette question ?</string>
+    <string name="report_wrong_answer">La bonne réponse est fausse</string>
+    <string name="report_ambiguous">Question ambiguë ou plusieurs réponses possibles</string>
+    <string name="report_typo">Faute d\'orthographe ou de traduction</string>
+    <string name="report_other">Autre problème</string>
+    <string name="report_comment">Détails (facultatif)</string>
+    <string name="report_send">Envoyer</string>
+    <string name="report_sent">Merci ! Votre signalement a été envoyé, nous allons vérifier la question.</string>
+    <string name="report_failed">Échec de l\'envoi. Réessayez.</string>
+    <string name="report_email_subject">Signalement de la question %1$s</string>
+
     <string name="points">%1$s points</string>
 </resources>

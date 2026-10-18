@@ -13,6 +13,8 @@ data class Question(
     val difficulty: Int,
     val explanation: String = "",
     val category: String = "",
+    /** Index into [AppLanguage.topics]; null for questions without a known topic. */
+    val topic: Int? = null,
 ) {
     val isValid: Boolean
         get() = text.isNotBlank() &&

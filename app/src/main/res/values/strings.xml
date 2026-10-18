@@ -93,5 +93,19 @@
     <string name="error_not_found">لا يوجد تحدٍّ بهذا الرمز.</string>
     <string name="error_already_played">لعبت هذا التحدي من قبل، وهذه نتائجه.</string>
 
+    <!-- Topics and reports -->
+    <string name="topic_all">كل المواضيع</string>
+    <string name="report_button">أبلغ عن خطأ في السؤال</string>
+    <string name="report_title">ما المشكلة في هذا السؤال؟</string>
+    <string name="report_wrong_answer">الإجابة الصحيحة خاطئة</string>
+    <string name="report_ambiguous">السؤال غامض أو له أكثر من إجابة</string>
+    <string name="report_typo">خطأ في الكتابة أو الترجمة</string>
+    <string name="report_other">مشكلة أخرى</string>
+    <string name="report_comment">تفاصيل (اختياري)</string>
+    <string name="report_send">إرسال</string>
+    <string name="report_sent">شكراً! وصلنا بلاغك وسنراجع السؤال.</string>
+    <string name="report_failed">تعذّر إرسال البلاغ. حاول مجدداً.</string>
+    <string name="report_email_subject">بلاغ عن السؤال %1$s</string>
+
     <string name="points">%1$s نقطة</string>
 </resources>

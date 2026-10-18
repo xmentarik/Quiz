@@ -13,8 +13,8 @@ data class QuizUiState(
     val loading: Boolean = false,
     val aiAvailable: Boolean = false,
     val useAi: Boolean = false,
-    /** Index into [com.xmentarik.quiz.data.AppLanguage.topics]. */
-    val topicIndex: Int = 0,
+    /** Index into [com.xmentarik.quiz.data.AppLanguage.topics]; null plays all topics. */
+    val topicIndex: Int? = null,
     val game: GameState? = null,
     /** Option tapped but not yet confirmed as the final answer. */
     val pendingOption: Int? = null,
@@ -25,10 +25,17 @@ data class QuizUiState(
     val confirmWalkAway: Boolean = false,
     val aiFallbackNotice: Boolean = false,
     val newRecord: Boolean = false,
+    /** Report dialog for the current question. */
+    val reportOpen: Boolean = false,
+    val reportStatus: ReportStatus? = null,
+    /** Ids of the questions reported during this session, so each is reported once. */
+    val reportedQuestions: Set<String> = emptySet(),
     /** Code of the friends challenge being played, null for a normal game. */
     val activeChallenge: String? = null,
     val online: OnlineUiState = OnlineUiState(),
 )
+
+enum class ReportStatus { SENDING, FAILED }
 
 enum class OnlineError { NOT_CONFIGURED, NETWORK, BAD_CODE, CHALLENGE_NOT_FOUND, ALREADY_PLAYED }
 

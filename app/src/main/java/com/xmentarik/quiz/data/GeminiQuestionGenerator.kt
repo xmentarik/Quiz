@@ -27,7 +27,12 @@ class GeminiQuestionGenerator(
 ) {
     val isConfigured: Boolean get() = apiKey.isNotBlank()
 
-    suspend fun generate(topic: String, language: AppLanguage, perLevel: Int = DEFAULT_PER_LEVEL): List<Question> =
+    suspend fun generate(
+        topic: String,
+        language: AppLanguage,
+        perLevel: Int = DEFAULT_PER_LEVEL,
+        topicIndex: Int? = null,
+    ): List<Question> =
         withContext(Dispatchers.IO) {
             val connection = URL("$baseUrl/models/$model:generateContent").openConnection() as HttpURLConnection
             try {
@@ -43,7 +48,7 @@ class GeminiQuestionGenerator(
                 val stream = if (code in 200..299) connection.inputStream else connection.errorStream
                 val body = stream?.bufferedReader()?.use { it.readText() }.orEmpty()
                 if (code !in 200..299) throw IOException("Gemini HTTP $code: ${body.take(300)}")
-                parseResponse(body, topic)
+                parseResponse(body, topic).map { it.copy(topic = topicIndex) }
             } finally {
                 connection.disconnect()
             }

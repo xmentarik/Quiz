@@ -53,6 +53,12 @@ class OnlineModelsTest {
     }
 
     @Test
+    fun reportCommentsAreTrimmedAndCapped() {
+        assertEquals("typo", QuestionReport.cleanComment("  typo \n"))
+        assertEquals(QuestionReport.MAX_COMMENT_LENGTH, QuestionReport.cleanComment("x".repeat(2_000)).length)
+    }
+
+    @Test
     fun payloadRoundTripsTheExactGame() {
         val bank = QuestionJson.parseList(File("src/main/assets/questions_fr.json").readText())
         val set = QuestionSetBuilder.build(bank, Random(9))

@@ -344,7 +344,7 @@ def build():
 
     topic_names = {
         "ar": ["ثقافة عامة", "علوم", "تاريخ", "جغرافيا", "رياضة", "دين وحضارة إسلامية",
-               "تقنية وبرمجة", "أدب ولغة", "أفلام ومسلسلات", "المغرب العربي"],
+               "تقنية وبرمجة", "أدب ولغة عربية", "أفلام ومسلسلات", "المغرب العربي"],
         "fr": ["Culture générale", "Sciences", "Histoire", "Géographie", "Sport", "Religion et civilisation islamique",
                "Technologie et programmation", "Littérature et langue", "Cinéma et séries", "Le Maghreb"],
         "en": [t[0] for t in TOPICS[:8]] + ["Film and TV", "The Maghreb"],
@@ -359,6 +359,7 @@ def build():
             "difficulty": q["difficulty"],
             "explanation": q[lang]["explanation"].strip(),
             "category": topic_names[lang][q["topic"]],
+            "topic": q["topic"],
         } for q in kept]
         (ASSETS / f"questions_{lang}.json").write_text(json.dumps(base + generated, ensure_ascii=False, indent=1))
         print(f"  questions_{lang}.json: {len(base) + len(generated)} questions")

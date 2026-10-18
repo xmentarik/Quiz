@@ -24,28 +24,30 @@ class QuestionRepository(
         }.also { localCache[language] = it }
 
     /** Builds a game from AI questions when requested, falling back to the bundled bank on any failure. */
+    /** [topic] is an index into [AppLanguage.topics]; null means all topics. */
     suspend fun loadGame(
         useAi: Boolean,
-        topic: String,
+        topic: Int?,
         language: AppLanguage,
         recentlySeen: Set<String> = emptySet(),
         random: Random = Random.Default,
     ): LoadedGame {
         val local = localQuestions(language)
-        if (!useAi || !aiAvailable) {
-            return LoadedGame(QuestionSetBuilder.build(local, random, recentlySeen = recentlySeen), QuestionSource.LOCAL)
-        }
+        val bundled = { QuestionSetBuilder.buildForTopic(local, topic, random, recentlySeen) }
+        if (!useAi || !aiAvailable) return LoadedGame(bundled(), QuestionSource.LOCAL)
 
         return try {
-            val generated = generator.generate(topic, language)
-            LoadedGame(QuestionSetBuilder.build(generated, random, fallback = local, recentlySeen = recentlySeen), QuestionSource.AI)
+            val topicName = language.topics[topic ?: 0]
+            val generated = generator.generate(topicName, language, topicIndex = topic)
+            val sameTopic = if (topic == null) local else local.filter { it.topic == topic } + local
+            LoadedGame(
+                QuestionSetBuilder.build(generated, random, fallback = sameTopic, recentlySeen = recentlySeen),
+                QuestionSource.AI,
+            )
         } catch (e: CancellationException) {
             throw e
         } catch (e: Exception) {
-            LoadedGame(
-                QuestionSetBuilder.build(local, random, recentlySeen = recentlySeen),
-                QuestionSource.LOCAL_AFTER_AI_FAILURE,
-            )
+            LoadedGame(bundled(), QuestionSource.LOCAL_AFTER_AI_FAILURE)
         }
     }
 }

@@ -27,6 +27,38 @@ class QuestionBankTest {
     }
 
     @Test
+    fun everyQuestionHasTheSameTopicInEveryLanguage() {
+        val arabicTopics = bundled.associate { it.id to it.topic }
+        assertTrue(bundled.all { it.topic in AppLanguage.ARABIC.topics.indices })
+        AppLanguage.entries.forEach { language ->
+            bank(language).forEach { assertEquals("${language.name} ${it.id}", arabicTopics[it.id], it.topic) }
+        }
+    }
+
+    @Test
+    fun everyTopicCanFillAGameOnItsOwn() {
+        AppLanguage.ARABIC.topics.indices.forEach { topic ->
+            (1..3).forEach { level ->
+                val count = bundled.count { it.topic == topic && it.difficulty == level }
+                assertTrue("topic $topic level $level has $count", count >= QuestionSetBuilder.PER_LEVEL + 1)
+            }
+            val set = QuestionSetBuilder.buildForTopic(bundled, topic, Random(topic))
+            assertTrue("topic $topic", (set.main + set.reserve).all { it.topic == topic })
+        }
+    }
+
+    @Test
+    fun allTopicsMixesThemAndUnseenTopicQuestionsComeFirst() {
+        val mixed = (0 until 20).flatMap { QuestionSetBuilder.buildForTopic(bundled, null, Random(it)).main }
+        assertTrue(mixed.map { it.topic }.toSet().size >= 8)
+
+        // Within a topic, seen questions of that topic still beat questions from other topics.
+        val science = bundled.filter { it.topic == 1 }
+        val set = QuestionSetBuilder.buildForTopic(bundled, 1, Random(3), recentlySeen = science.map { it.id }.toSet())
+        assertTrue(set.main.all { it.topic == 1 })
+    }
+
+    @Test
     fun parserKeepsEveryBundledQuestion() {
         AppLanguage.entries.forEach { language ->
             val raw = File("src/main/assets/${language.questionsAsset}").readText()

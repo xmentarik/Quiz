@@ -93,5 +93,19 @@
     <string name="error_not_found">No challenge with this code.</string>
     <string name="error_already_played">You\'ve already played this challenge: here are the results.</string>
 
+    <!-- Topics and reports -->
+    <string name="topic_all">All topics</string>
+    <string name="report_button">Report a problem</string>
+    <string name="report_title">What\'s wrong with this question?</string>
+    <string name="report_wrong_answer">The correct answer is wrong</string>
+    <string name="report_ambiguous">Ambiguous, or more than one answer</string>
+    <string name="report_typo">Typo or translation error</string>
+    <string name="report_other">Something else</string>
+    <string name="report_comment">Details (optional)</string>
+    <string name="report_send">Send</string>
+    <string name="report_sent">Thanks! Your report was sent and we\'ll check the question.</string>
+    <string name="report_failed">Couldn\'t send the report. Please try again.</string>
+    <string name="report_email_subject">Report for question %1$s</string>
+
     <string name="points">%1$s points</string>
 </resources>

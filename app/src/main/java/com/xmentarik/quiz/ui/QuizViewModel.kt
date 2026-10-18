@@ -25,6 +25,8 @@ import com.xmentarik.quiz.online.ChallengePayload
 import com.xmentarik.quiz.online.ChallengeResult
 import com.xmentarik.quiz.online.OnlineService
 import com.xmentarik.quiz.online.PlayerNames
+import com.xmentarik.quiz.online.QuestionReport
+import com.xmentarik.quiz.online.ReportReason
 import kotlin.coroutines.cancellation.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -68,7 +70,7 @@ class QuizViewModel(
 
     fun setUseAi(enabled: Boolean) = _state.update { it.copy(useAi = enabled && it.aiAvailable) }
 
-    fun setTopic(index: Int) = _state.update { it.copy(topicIndex = index) }
+    fun setTopic(index: Int?) = _state.update { it.copy(topicIndex = index) }
 
     fun setSoundEnabled(enabled: Boolean) =
         settingsStore.updateFeedback(feedbackSettings.value.copy(soundEnabled = enabled))
@@ -99,10 +101,9 @@ class QuizViewModel(
     }
 
     private suspend fun loadQuestions(): LoadedGame {
-        val gameLanguage = language.value
         val current = _state.value
-        val topic = gameLanguage.topics.getOrElse(current.topicIndex) { gameLanguage.topics.first() }
-        return repository.loadGame(current.useAi, topic, gameLanguage, settingsStore.recentQuestionIds.toSet())
+        val topic = current.topicIndex?.takeIf { it in language.value.topics.indices }
+        return repository.loadGame(current.useAi, topic, language.value, settingsStore.recentQuestionIds.toSet())
     }
 
     private fun beginGame(questions: QuestionSet, challenge: String?, aiFallback: Boolean = false) {
@@ -121,6 +122,8 @@ class QuizViewModel(
                 newRecord = false,
                 aiFallbackNotice = aiFallback,
                 activeChallenge = challenge,
+                reportOpen = false,
+                reportStatus = null,
             )
         }
         startTimer()
@@ -331,11 +334,51 @@ class QuizViewModel(
     }
 
     fun nextQuestion() {
-        _state.update { it.copy(game = it.game?.let(engine::nextQuestion)) }
+        _state.update { it.copy(game = it.game?.let(engine::nextQuestion), reportOpen = false, reportStatus = null) }
         startTimer()
     }
 
-    fun showResult() = _state.update { it.copy(screen = Screen.RESULT) }
+    fun showResult() = _state.update { it.copy(screen = Screen.RESULT, reportOpen = false) }
+
+    // ---------------------------------------------------------------- question reports
+
+    fun openReport() = _state.update { it.copy(reportOpen = true, reportStatus = null) }
+
+    fun dismissReport() = _state.update { it.copy(reportOpen = false, reportStatus = null) }
+
+    /** Sends the report to Firestore; the dialog stays open with an error if it fails. */
+    fun submitReport(reason: ReportReason, comment: String) {
+        val current = _state.value
+        val game = current.game ?: return
+        if (current.reportStatus == ReportStatus.SENDING || !current.online.available) return
+        val question = game.currentQuestion
+        val report = QuestionReport(
+            questionId = question.id,
+            language = language.value.code,
+            text = question.text,
+            options = question.options,
+            correctIndex = question.correctIndex,
+            selectedOption = game.selectedOption,
+            reason = reason,
+            comment = QuestionReport.cleanComment(comment),
+        )
+        _state.update { it.copy(reportStatus = ReportStatus.SENDING) }
+        viewModelScope.launch {
+            try {
+                online.submitReport(report)
+                markReported(question.id)
+            } catch (e: CancellationException) {
+                throw e
+            } catch (e: Exception) {
+                _state.update { it.copy(reportStatus = ReportStatus.FAILED) }
+            }
+        }
+    }
+
+    /** Called once the report went out another way (the email app). */
+    fun markReported(questionId: String) = _state.update {
+        it.copy(reportOpen = false, reportStatus = null, reportedQuestions = it.reportedQuestions + questionId)
+    }
 
     fun dismissAiNotice() = _state.update { it.copy(aiFallbackNotice = false) }
 
