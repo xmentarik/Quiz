@@ -21,6 +21,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -52,6 +53,8 @@ fun HomeScreen(
     onMusicChange: (Boolean) -> Unit,
     onVibrationChange: (Boolean) -> Unit,
     onLanguageChange: (AppLanguage) -> Unit,
+    onLeaderboard: () -> Unit,
+    onChallenges: () -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -99,6 +102,21 @@ fun HomeScreen(
             } else {
                 Text(stringResource(R.string.home_play), style = MaterialTheme.typography.titleMedium)
             }
+        }
+
+        Row(horizontalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.fillMaxWidth()) {
+            OutlinedButton(
+                onClick = onLeaderboard,
+                enabled = !state.loading,
+                shape = RoundedCornerShape(28.dp),
+                modifier = Modifier.weight(1f),
+            ) { Text("🏆 " + stringResource(R.string.home_leaderboard), textAlign = TextAlign.Center) }
+            OutlinedButton(
+                onClick = onChallenges,
+                enabled = !state.loading,
+                shape = RoundedCornerShape(28.dp),
+                modifier = Modifier.weight(1f),
+            ) { Text("⚔️ " + stringResource(R.string.home_challenge), textAlign = TextAlign.Center) }
         }
     }
 }

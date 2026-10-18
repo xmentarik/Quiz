@@ -43,7 +43,9 @@ fun ResultScreen(
     stats: PlayerStats,
     newRecord: Boolean,
     loading: Boolean,
+    challengeCode: String?,
     onPlayAgain: () -> Unit,
+    onChallengeRanking: (String) -> Unit,
     onHome: () -> Unit,
 ) {
     BackHandler(onBack = onHome)
@@ -101,6 +103,16 @@ fun ResultScreen(
 
         if (newRecord) {
             Text("🎉 " + stringResource(R.string.result_new_record), color = QuizColors.Gold, fontWeight = FontWeight.Bold)
+        }
+
+        if (challengeCode != null) {
+            Button(
+                onClick = { onChallengeRanking(challengeCode) },
+                shape = RoundedCornerShape(28.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(52.dp),
+            ) { Text("⚔️ " + stringResource(R.string.result_challenge_ranking)) }
         }
 
         Button(

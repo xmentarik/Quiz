@@ -26,6 +26,12 @@ class SettingsStore(context: Context) {
     )
     val language: StateFlow<AppLanguage> = _language.asStateFlow()
 
+    val playerName: String? get() = prefs.getString(KEY_PLAYER_NAME, null)
+
+    /** Codes of the challenges this player created or joined, newest first. */
+    val myChallenges: List<String>
+        get() = prefs.getString(KEY_CHALLENGES, null)?.split(',')?.filter { it.isNotBlank() }.orEmpty()
+
     fun updateFeedback(settings: FeedbackSettings) {
         prefs.edit {
             putBoolean(KEY_SOUND, settings.soundEnabled)
@@ -40,10 +46,22 @@ class SettingsStore(context: Context) {
         _language.value = language
     }
 
+    fun updatePlayerName(name: String) = prefs.edit { putString(KEY_PLAYER_NAME, name) }
+
+    /** Remembers a challenge code and returns the updated list. */
+    fun rememberChallenge(code: String): List<String> {
+        val updated = (listOf(code) + myChallenges.filter { it != code }).take(MAX_CHALLENGES)
+        prefs.edit { putString(KEY_CHALLENGES, updated.joinToString(",")) }
+        return updated
+    }
+
     private companion object {
         const val KEY_SOUND = "sound_enabled"
         const val KEY_MUSIC = "music_enabled"
         const val KEY_VIBRATION = "vibration_enabled"
         const val KEY_LANGUAGE = "language"
+        const val KEY_PLAYER_NAME = "player_name"
+        const val KEY_CHALLENGES = "my_challenges"
+        const val MAX_CHALLENGES = 20
     }
 }

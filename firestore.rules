@@ -1,0 +1,69 @@
+rules_version = '2';
+
+// Security rules for the online features. Deploy with: firebase deploy --only firestore:rules
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function ladderPrize(p) {
+      return p in [0, 100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000, 32000,
+                   64000, 125000, 250000, 500000, 1000000];
+    }
+
+    function validName(n) {
+      return n is string && n.size() >= 2 && n.size() <= 20;
+    }
+
+    // One document per player, written only by that player.
+    match /leaderboard/{uid} {
+      allow read: if signedIn();
+      allow create, update: if signedIn()
+        && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['name', 'bestPrize', 'gamesPlayed', 'millionWins', 'updatedAt'])
+        && validName(request.resource.data.name)
+        && ladderPrize(request.resource.data.bestPrize)
+        && request.resource.data.gamesPlayed is int
+        && request.resource.data.millionWins is int
+        && request.resource.data.millionWins <= request.resource.data.gamesPlayed
+        && (resource == null || request.resource.data.bestPrize >= resource.data.bestPrize)
+        && request.resource.data.updatedAt == request.time;
+      allow delete: if false;
+    }
+
+    // Challenges are immutable once created.
+    match /challenges/{code} {
+      allow read: if signedIn();
+      allow create: if signedIn()
+        && code.matches('^[A-HJ-NP-Z2-9]{6}$')
+        && request.resource.data.keys().hasOnly(['creatorId', 'creatorName', 'language', 'payload', 'createdAt'])
+        && request.resource.data.creatorId == request.auth.uid
+        && validName(request.resource.data.creatorName)
+        && request.resource.data.language in ['ar', 'fr']
+        && request.resource.data.payload is string
+        && request.resource.data.payload.size() < 200000
+        && request.resource.data.createdAt == request.time;
+      allow update, delete: if false;
+
+      // One attempt per player and challenge.
+      match /results/{uid} {
+        allow read: if signedIn();
+        allow create: if signedIn()
+          && request.auth.uid == uid
+          && exists(/databases/$(database)/documents/challenges/$(code))
+          && request.resource.data.keys().hasOnly(['name', 'prize', 'correctCount', 'durationSeconds', 'finishedAt'])
+          && validName(request.resource.data.name)
+          && ladderPrize(request.resource.data.prize)
+          && request.resource.data.correctCount is int
+          && request.resource.data.correctCount >= 0
+          && request.resource.data.correctCount <= 15
+          && request.resource.data.durationSeconds is int
+          && request.resource.data.durationSeconds >= 0
+          && request.resource.data.finishedAt == request.time;
+        allow update, delete: if false;
+      }
+    }
+  }
+}

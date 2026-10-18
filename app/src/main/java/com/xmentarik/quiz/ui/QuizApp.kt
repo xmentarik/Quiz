@@ -11,6 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.xmentarik.quiz.ui.game.GameScreen
 import com.xmentarik.quiz.ui.home.HomeScreen
+import com.xmentarik.quiz.ui.online.ChallengeResultsScreen
+import com.xmentarik.quiz.ui.online.ChallengesScreen
+import com.xmentarik.quiz.ui.online.LeaderboardScreen
+import com.xmentarik.quiz.ui.online.NamePromptDialog
 import com.xmentarik.quiz.ui.result.ResultScreen
 import com.xmentarik.quiz.ui.theme.QuizColors
 
@@ -48,8 +52,28 @@ fun QuizApp(viewModel: QuizViewModel) {
                     stats = stats,
                     newRecord = state.newRecord,
                     loading = state.loading,
+                    challengeCode = state.activeChallenge,
                     onPlayAgain = viewModel::startGame,
+                    onChallengeRanking = viewModel::openChallengeResults,
                     onHome = viewModel::goHome,
+                )
+                screen == Screen.LEADERBOARD -> LeaderboardScreen(
+                    online = state.online,
+                    onRefresh = viewModel::refreshLeaderboard,
+                    onBack = viewModel::backFromOnline,
+                )
+                screen == Screen.CHALLENGES -> ChallengesScreen(
+                    online = state.online,
+                    onCodeChange = viewModel::setChallengeCodeInput,
+                    onCreate = viewModel::createChallenge,
+                    onJoin = viewModel::joinChallenge,
+                    onOpenChallenge = viewModel::openChallengeResults,
+                    onBack = viewModel::backFromOnline,
+                )
+                screen == Screen.CHALLENGE_RESULTS -> ChallengeResultsScreen(
+                    online = state.online,
+                    onRefresh = { state.online.viewedChallenge?.let(viewModel::openChallengeResults) },
+                    onBack = viewModel::backFromOnline,
                 )
                 else -> HomeScreen(
                     state = state,
@@ -62,8 +86,14 @@ fun QuizApp(viewModel: QuizViewModel) {
                     onMusicChange = viewModel::setMusicEnabled,
                     onVibrationChange = viewModel::setVibrationEnabled,
                     onLanguageChange = viewModel::setLanguage,
+                    onLeaderboard = viewModel::openLeaderboard,
+                    onChallenges = viewModel::openChallenges,
                 )
             }
+        }
+
+        if (state.online.namePromptFor != null) {
+            NamePromptDialog(onSubmit = viewModel::submitPlayerName, onDismiss = viewModel::dismissNamePrompt)
         }
     }
 }

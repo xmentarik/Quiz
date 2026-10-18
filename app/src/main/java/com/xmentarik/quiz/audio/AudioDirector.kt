@@ -34,7 +34,7 @@ object AudioDirector {
     const val TICK_FROM_SECONDS = 10
 
     fun music(state: QuizUiState): MusicTrack? = when (state.screen) {
-        Screen.HOME -> MusicTrack.MENU
+        Screen.HOME, Screen.LEADERBOARD, Screen.CHALLENGES, Screen.CHALLENGE_RESULTS -> MusicTrack.MENU
         Screen.RESULT -> null
         Screen.GAME -> {
             val game = state.game

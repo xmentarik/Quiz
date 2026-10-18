@@ -7,6 +7,12 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
 }
 
+// Online features (leaderboard, challenges) need app/google-services.json from the Firebase console.
+// Without it the app still builds and runs, with those features shown as unavailable.
+if (file("google-services.json").exists()) {
+    apply(plugin = "com.google.gms.google-services")
+}
+
 // Gemini settings are read from local.properties so the key never lands in git.
 val localProperties = Properties().apply {
     val file = rootProject.file("local.properties")
@@ -59,6 +65,10 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.kotlinx.serialization.json)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
+    implementation(libs.kotlinx.coroutines.play.services)
     debugImplementation(libs.androidx.compose.ui.tooling)
 
     testImplementation(libs.junit)

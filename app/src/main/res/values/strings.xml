@@ -58,5 +58,40 @@
     <string name="result_share">شارك نتيجتك</string>
     <string name="result_share_text">ربحت %1$s نقطة في لعبة «طريق المليون»! هل تستطيع التفوق علي؟</string>
 
+    <!-- Online -->
+    <string name="home_leaderboard">الترتيب العالمي</string>
+    <string name="home_challenge">تحدَّ أصدقاءك</string>
+    <string name="back">رجوع</string>
+    <string name="refresh">تحديث</string>
+    <string name="save">حفظ</string>
+    <string name="cancel">إلغاء</string>
+    <string name="name_title">اختر اسمك</string>
+    <string name="name_hint">من 2 إلى 20 حرفاً، يراه اللاعبون الآخرون</string>
+    <string name="name_invalid">استعمل من 2 إلى 20 حرفاً أو رقماً</string>
+    <string name="leaderboard_title">الترتيب العالمي</string>
+    <string name="leaderboard_my_rank">ترتيبك: #%1$d</string>
+    <string name="leaderboard_empty">لا أحد في الترتيب بعد. كن الأول!</string>
+    <string name="leaderboard_you">(أنت)</string>
+    <string name="challenge_title">تحدّي الأصدقاء</string>
+    <string name="challenge_create_title">أنشئ تحدياً</string>
+    <string name="challenge_create_body">العب 15 سؤالاً، ثم أرسل الرمز لأصدقائك ليجيبوا عن الأسئلة نفسها بالضبط.</string>
+    <string name="challenge_create">أنشئ والعب</string>
+    <string name="challenge_join_title">انضم إلى تحدٍّ</string>
+    <string name="challenge_code_label">رمز التحدي</string>
+    <string name="challenge_join">انضمام</string>
+    <string name="challenge_mine">تحدياتي</string>
+    <string name="challenge_results_title">تحدي %1$s</string>
+    <string name="challenge_by">من إنشاء %1$s</string>
+    <string name="challenge_share">أرسل الرمز لأصدقائك</string>
+    <string name="challenge_invite">أتحداك في «طريق المليون»! افتح «تحدَّ أصدقاءك» وأدخل الرمز %1$s</string>
+    <string name="challenge_no_results">لم يُنهِ أحد هذا التحدي بعد.</string>
+    <string name="challenge_correct_time">%1$d إجابات صحيحة · %2$s</string>
+    <string name="result_challenge_ranking">ترتيب التحدي</string>
+    <string name="error_not_configured">الميزات عبر الإنترنت غير مفعّلة في هذه النسخة: أضف ملف google-services.json (انظر README).</string>
+    <string name="error_network">تعذّر الاتصال. تحقق من الإنترنت وحاول مجدداً.</string>
+    <string name="error_bad_code">الرمز يتكون من 6 أحرف وأرقام.</string>
+    <string name="error_not_found">لا يوجد تحدٍّ بهذا الرمز.</string>
+    <string name="error_already_played">لعبت هذا التحدي من قبل، وهذه نتائجه.</string>
+
     <string name="points">%1$s نقطة</string>
 </resources>

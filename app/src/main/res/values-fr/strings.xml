@@ -58,5 +58,40 @@
     <string name="result_share">Partager mon score</string>
     <string name="result_share_text">J\'ai gagné %1$s points à « La Route du Million » ! Sauras-tu faire mieux ?</string>
 
+    <!-- Online -->
+    <string name="home_leaderboard">Classement mondial</string>
+    <string name="home_challenge">Défier mes amis</string>
+    <string name="back">Retour</string>
+    <string name="refresh">Actualiser</string>
+    <string name="save">Enregistrer</string>
+    <string name="cancel">Annuler</string>
+    <string name="name_title">Choisissez un pseudo</string>
+    <string name="name_hint">2 à 20 caractères, visible par les autres joueurs</string>
+    <string name="name_invalid">Utilisez 2 à 20 lettres ou chiffres</string>
+    <string name="leaderboard_title">Classement mondial</string>
+    <string name="leaderboard_my_rank">Votre rang : n° %1$d</string>
+    <string name="leaderboard_empty">Personne au classement pour l\'instant. Soyez le premier !</string>
+    <string name="leaderboard_you">(vous)</string>
+    <string name="challenge_title">Défi entre amis</string>
+    <string name="challenge_create_title">Créer un défi</string>
+    <string name="challenge_create_body">Jouez 15 questions, puis envoyez le code à vos amis : ils auront exactement les mêmes questions.</string>
+    <string name="challenge_create">Créer et jouer</string>
+    <string name="challenge_join_title">Rejoindre un défi</string>
+    <string name="challenge_code_label">Code du défi</string>
+    <string name="challenge_join">Rejoindre</string>
+    <string name="challenge_mine">Mes défis</string>
+    <string name="challenge_results_title">Défi %1$s</string>
+    <string name="challenge_by">Créé par %1$s</string>
+    <string name="challenge_share">Envoyer le code à mes amis</string>
+    <string name="challenge_invite">Je te défie à « La Route du Million » ! Ouvre « Défier mes amis » et entre le code %1$s</string>
+    <string name="challenge_no_results">Personne n\'a encore terminé ce défi.</string>
+    <string name="challenge_correct_time">%1$d bonnes réponses · %2$s</string>
+    <string name="result_challenge_ranking">Classement du défi</string>
+    <string name="error_not_configured">Fonctions en ligne désactivées dans cette version : ajoutez google-services.json (voir le README).</string>
+    <string name="error_network">Connexion impossible. Vérifiez Internet et réessayez.</string>
+    <string name="error_bad_code">Le code contient 6 lettres et chiffres.</string>
+    <string name="error_not_found">Aucun défi avec ce code.</string>
+    <string name="error_already_played">Vous avez déjà joué ce défi : voici les résultats.</string>
+
     <string name="points">%1$s points</string>
 </resources>
