@@ -15,3 +15,4 @@
 *.keystore
 tools/questions/cache/
 tools/questions/*.log
+__pycache__/
