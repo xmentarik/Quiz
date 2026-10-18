@@ -277,6 +277,19 @@ def similar(a, b):
     return overlap >= 0.6 or (same_answer and overlap >= 0.35)
 
 
+# Records can be broken and "current" facts go stale, whatever the checker says.
+PERISHABLE = re.compile(
+    r"\b(record|records|all-time|top (goal)?scorer|most (goals|titles|caps|appearances|wins)|currently|"
+    r"current (capital|name|holder|champion|president|king|leader|world)|"
+    r"as of|so far|to date|nowadays|still)\b",
+    re.IGNORECASE,
+)
+
+
+def perishable(q):
+    return bool(PERISHABLE.search(q["en"]["text"]))
+
+
 def well_formed(q):
     if q["correctIndex"] not in range(4):
         return False
@@ -316,6 +329,8 @@ def build():
             reason = "translation mismatch"
         elif not v.get("difficultyFits", True):
             reason = "wrong difficulty"
+        elif perishable(q):
+            reason = "may go out of date"
         elif any(similar(q, other) for other in reference + kept):
             reason = "duplicate"
         else:

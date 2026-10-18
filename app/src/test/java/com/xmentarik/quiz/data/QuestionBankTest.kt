@@ -2,6 +2,7 @@ package com.xmentarik.quiz.data
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
+import kotlinx.serialization.json.jsonArray
 import org.junit.Test
 import java.io.File
 import kotlin.random.Random
@@ -16,10 +17,21 @@ class QuestionBankTest {
     fun everyBundledBankIsValidAndUnique() {
         AppLanguage.entries.forEach { language ->
             val questions = bank(language)
-            assertEquals(language.name, 60, questions.size)
+            // Same questions in every language, and the parser must not have dropped any of them.
+            assertEquals(language.name, bundled.size, questions.size)
+            assertTrue(language.name, questions.size >= 1_000)
             assertEquals(questions.size, questions.map { it.id }.toSet().size)
             assertEquals(questions.size, questions.map { it.text }.toSet().size)
-            (1..3).forEach { level -> assertEquals(20, questions.count { it.difficulty == level }) }
+            (1..3).forEach { level -> assertTrue("level $level", questions.count { it.difficulty == level } >= 300) }
+        }
+    }
+
+    @Test
+    fun parserKeepsEveryBundledQuestion() {
+        AppLanguage.entries.forEach { language ->
+            val raw = File("src/main/assets/${language.questionsAsset}").readText()
+            val total = QuestionJson.json.parseToJsonElement(raw).jsonArray.size
+            assertEquals(language.name, total, bank(language).size)
         }
     }
 
