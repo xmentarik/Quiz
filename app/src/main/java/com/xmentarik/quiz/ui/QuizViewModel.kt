@@ -45,7 +45,8 @@ class QuizViewModel(
     private val _state = MutableStateFlow(
         QuizUiState(
             aiAvailable = repository.aiAvailable,
-            useAi = repository.aiAvailable,
+            // The bundled bank is large enough; AI questions are opt-in to save the Gemini quota.
+            useAi = false,
             online = OnlineUiState(
                 available = online.isAvailable,
                 playerName = settingsStore.playerName,
@@ -101,10 +102,12 @@ class QuizViewModel(
         val gameLanguage = language.value
         val current = _state.value
         val topic = gameLanguage.topics.getOrElse(current.topicIndex) { gameLanguage.topics.first() }
-        return repository.loadGame(current.useAi, topic, gameLanguage)
+        return repository.loadGame(current.useAi, topic, gameLanguage, settingsStore.recentQuestionIds.toSet())
     }
 
     private fun beginGame(questions: QuestionSet, challenge: String?, aiFallback: Boolean = false) {
+        // AI questions get fresh ids each time, so only bundled ones are worth remembering.
+        settingsStore.rememberQuestions(questions.main.map { it.id }.filter { !it.startsWith("ai-") })
         gameRecorded = false
         gameStartedAt = System.nanoTime()
         _state.update {

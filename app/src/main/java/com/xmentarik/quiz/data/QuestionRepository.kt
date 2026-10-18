@@ -28,18 +28,24 @@ class QuestionRepository(
         useAi: Boolean,
         topic: String,
         language: AppLanguage,
+        recentlySeen: Set<String> = emptySet(),
         random: Random = Random.Default,
     ): LoadedGame {
         val local = localQuestions(language)
-        if (!useAi || !aiAvailable) return LoadedGame(QuestionSetBuilder.build(local, random), QuestionSource.LOCAL)
+        if (!useAi || !aiAvailable) {
+            return LoadedGame(QuestionSetBuilder.build(local, random, recentlySeen = recentlySeen), QuestionSource.LOCAL)
+        }
 
         return try {
             val generated = generator.generate(topic, language)
-            LoadedGame(QuestionSetBuilder.build(generated, random, fallback = local), QuestionSource.AI)
+            LoadedGame(QuestionSetBuilder.build(generated, random, fallback = local, recentlySeen = recentlySeen), QuestionSource.AI)
         } catch (e: CancellationException) {
             throw e
         } catch (e: Exception) {
-            LoadedGame(QuestionSetBuilder.build(local, random), QuestionSource.LOCAL_AFTER_AI_FAILURE)
+            LoadedGame(
+                QuestionSetBuilder.build(local, random, recentlySeen = recentlySeen),
+                QuestionSource.LOCAL_AFTER_AI_FAILURE,
+            )
         }
     }
 }

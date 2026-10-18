@@ -13,11 +13,13 @@ object QuestionSetBuilder {
     /**
      * Uses [pool] first and tops up each level from [fallback] when [pool] is short
      * (for example when the AI returned too few valid questions).
+     * Questions whose id is in [recentlySeen] are only used once the unseen ones run out.
      */
     fun build(
         pool: List<Question>,
         random: Random = Random.Default,
         fallback: List<Question> = emptyList(),
+        recentlySeen: Set<String> = emptySet(),
     ): QuestionSet {
         val main = mutableListOf<Question>()
         val reserve = mutableListOf<Question>()
@@ -25,6 +27,7 @@ object QuestionSetBuilder {
 
         for (level in Question.MIN_DIFFICULTY..Question.MAX_DIFFICULTY) {
             val candidates = (pool.levelShuffled(level, random) + fallback.levelShuffled(level, random))
+                .sortedBy { it.id in recentlySeen } // stable: keeps the shuffle within each group
                 .filter { seenTexts.add(it.text.trim()) }
             check(candidates.size >= PER_LEVEL) {
                 "Not enough questions for difficulty $level: ${candidates.size} < $PER_LEVEL"

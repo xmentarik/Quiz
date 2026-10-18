@@ -68,6 +68,17 @@ class QuestionBankTest {
     }
 
     @Test
+    fun recentlySeenQuestionsComeLast() {
+        val seen = bundled.filter { it.difficulty == 1 }.drop(5).map { it.id }.toSet() // all easy ones but five
+        repeat(20) { seed ->
+            val set = QuestionSetBuilder.build(bundled, Random(seed), recentlySeen = seen)
+            assertTrue(set.main.filter { it.difficulty == 1 }.none { it.id in seen })
+        }
+        // When everything was seen, the game still gets built.
+        assertEquals(15, QuestionSetBuilder.build(bundled, Random(1), recentlySeen = bundled.map { it.id }.toSet()).main.size)
+    }
+
+    @Test
     fun invalidQuestionsAreDropped() {
         val raw = """
             [

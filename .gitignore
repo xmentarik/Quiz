@@ -13,3 +13,5 @@
 *.aab
 *.jks
 *.keystore
+tools/questions/cache/
+tools/questions/*.log
