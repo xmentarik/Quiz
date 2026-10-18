@@ -29,7 +29,7 @@ import com.xmentarik.quiz.game.GameState
 import com.xmentarik.quiz.game.Lifeline
 import com.xmentarik.quiz.game.MoneyLadder
 import com.xmentarik.quiz.ui.LifelineDialog
-import com.xmentarik.quiz.ui.OptionLabels
+import com.xmentarik.quiz.ui.LocalAppLanguage
 import com.xmentarik.quiz.ui.QuizUiState
 import com.xmentarik.quiz.ui.formatPrize
 
@@ -51,6 +51,7 @@ fun GameScreen(
     BackHandler(enabled = game.phase == GamePhase.PLAYING) { onRequestWalkAway() }
     var showLadder by rememberSaveable { mutableStateOf(false) }
     val question = game.currentQuestion
+    val labels = LocalAppLanguage.current.optionLabels
     val banked = formatPrize(MoneyLadder.banked(game.index))
 
     Column(
@@ -68,7 +69,7 @@ fun GameScreen(
 
         question.options.forEachIndexed { index, text ->
             AnswerOption(
-                label = OptionLabels[index],
+                label = labels[index],
                 text = text,
                 status = optionStatus(index, state, game),
                 onClick = { onSelect(index) },

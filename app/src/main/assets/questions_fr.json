@@ -1,0 +1,842 @@
+[
+  {
+    "id": "e1",
+    "text": "Quelle est la capitale du Maroc ?",
+    "options": [
+      "Casablanca",
+      "Rabat",
+      "Fès",
+      "Marrakech"
+    ],
+    "correctIndex": 1,
+    "difficulty": 1,
+    "explanation": "Rabat est la capitale administrative et politique du Royaume du Maroc.",
+    "category": "Géographie"
+  },
+  {
+    "id": "e2",
+    "text": "Combien de jours compte une semaine ?",
+    "options": [
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "correctIndex": 2,
+    "difficulty": 1,
+    "explanation": "Une semaine compte sept jours.",
+    "category": "Culture générale"
+  },
+  {
+    "id": "e3",
+    "text": "Quel animal est surnommé le roi de la jungle ?",
+    "options": [
+      "Le tigre",
+      "Le lion",
+      "L'éléphant",
+      "Le loup"
+    ],
+    "correctIndex": 1,
+    "difficulty": 1,
+    "explanation": "Le lion doit ce surnom à sa force et à sa prestance, même s'il vit surtout dans la savane.",
+    "category": "Animaux"
+  },
+  {
+    "id": "e4",
+    "text": "Combien de couleurs compte l'arc-en-ciel ?",
+    "options": [
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "correctIndex": 2,
+    "difficulty": 1,
+    "explanation": "Ses sept couleurs : rouge, orange, jaune, vert, bleu, indigo et violet.",
+    "category": "Sciences"
+  },
+  {
+    "id": "e5",
+    "text": "Sur quelle planète vivons-nous ?",
+    "options": [
+      "Mars",
+      "La Terre",
+      "Vénus",
+      "Jupiter"
+    ],
+    "correctIndex": 1,
+    "difficulty": 1,
+    "explanation": "La Terre est la troisième planète à partir du Soleil et la seule connue pour abriter la vie.",
+    "category": "Sciences"
+  },
+  {
+    "id": "e6",
+    "text": "Pendant quel mois les musulmans jeûnent-ils ?",
+    "options": [
+      "Chaabane",
+      "Ramadan",
+      "Chawwal",
+      "Rajab"
+    ],
+    "correctIndex": 1,
+    "difficulty": 1,
+    "explanation": "Ramadan est le neuvième mois du calendrier hégirien ; son jeûne est l'un des piliers de l'islam.",
+    "category": "Religion"
+  },
+  {
+    "id": "e7",
+    "text": "À partir de quoi les abeilles fabriquent-elles le miel ?",
+    "options": [
+      "Le nectar des fleurs",
+      "L'eau",
+      "Les feuilles",
+      "L'argile"
+    ],
+    "correctIndex": 0,
+    "difficulty": 1,
+    "explanation": "Les abeilles butinent le nectar des fleurs et le transforment en miel dans la ruche.",
+    "category": "Animaux"
+  },
+  {
+    "id": "e8",
+    "text": "Combien de joueurs une équipe de football aligne-t-elle sur le terrain ?",
+    "options": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "correctIndex": 2,
+    "difficulty": 1,
+    "explanation": "Chaque équipe joue à onze, gardien de but compris.",
+    "category": "Sport"
+  },
+  {
+    "id": "e9",
+    "text": "Quel est le plus grand océan du monde ?",
+    "options": [
+      "L'Atlantique",
+      "L'océan Indien",
+      "Le Pacifique",
+      "L'océan Arctique"
+    ],
+    "correctIndex": 2,
+    "difficulty": 1,
+    "explanation": "Le Pacifique est le plus grand et le plus profond ; il couvre environ un tiers de la surface du globe.",
+    "category": "Géographie"
+  },
+  {
+    "id": "e10",
+    "text": "Sur quel continent se trouve la majeure partie de l'Égypte ?",
+    "options": [
+      "L'Asie",
+      "L'Afrique",
+      "L'Europe",
+      "L'Amérique du Sud"
+    ],
+    "correctIndex": 1,
+    "difficulty": 1,
+    "explanation": "L'essentiel de l'Égypte est en Afrique du Nord-Est ; la péninsule du Sinaï, elle, est en Asie.",
+    "category": "Géographie"
+  },
+  {
+    "id": "e11",
+    "text": "Quel gaz devons-nous respirer pour rester en vie ?",
+    "options": [
+      "L'oxygène",
+      "L'azote",
+      "L'hélium",
+      "Le dioxyde de carbone"
+    ],
+    "correctIndex": 0,
+    "difficulty": 1,
+    "explanation": "Les cellules du corps ont besoin d'oxygène pour produire leur énergie.",
+    "category": "Sciences"
+  },
+  {
+    "id": "e12",
+    "text": "Combien de pattes a une araignée ?",
+    "options": [
+      "6",
+      "8",
+      "10",
+      "4"
+    ],
+    "correctIndex": 1,
+    "difficulty": 1,
+    "explanation": "L'araignée est un arachnide à huit pattes, alors que les insectes en ont six.",
+    "category": "Animaux"
+  },
+  {
+    "id": "e13",
+    "text": "Quelle est la monnaie officielle de l'Arabie saoudite ?",
+    "options": [
+      "Le dirham",
+      "Le dinar",
+      "Le riyal",
+      "La livre"
+    ],
+    "correctIndex": 2,
+    "difficulty": 1,
+    "explanation": "Le riyal saoudien est la monnaie officielle du royaume.",
+    "category": "Culture générale"
+  },
+  {
+    "id": "e14",
+    "text": "Quelle saison vient après l'hiver ?",
+    "options": [
+      "L'automne",
+      "L'été",
+      "Le printemps",
+      "Aucune"
+    ],
+    "correctIndex": 2,
+    "difficulty": 1,
+    "explanation": "Les saisons se suivent ainsi : hiver, printemps, été, automne.",
+    "category": "Culture générale"
+  },
+  {
+    "id": "e15",
+    "text": "Combien font 9 × 9 ?",
+    "options": [
+      "72",
+      "81",
+      "90",
+      "99"
+    ],
+    "correctIndex": 1,
+    "difficulty": 1,
+    "explanation": "Neuf fois neuf font quatre-vingt-un.",
+    "category": "Mathématiques"
+  },
+  {
+    "id": "e16",
+    "text": "Quel est le plus long fleuve d'Afrique ?",
+    "options": [
+      "Le Congo",
+      "Le Nil",
+      "Le Niger",
+      "Le Zambèze"
+    ],
+    "correctIndex": 1,
+    "difficulty": 1,
+    "explanation": "Avec environ 6 650 km, le Nil est le plus long fleuve d'Afrique.",
+    "category": "Géographie"
+  },
+  {
+    "id": "e17",
+    "text": "Quel animal est surnommé le vaisseau du désert ?",
+    "options": [
+      "Le cheval",
+      "Le chameau",
+      "L'éléphant",
+      "La girafe"
+    ],
+    "correctIndex": 1,
+    "difficulty": 1,
+    "explanation": "Le chameau résiste à la soif et à la chaleur et parcourt de longues distances dans le désert.",
+    "category": "Animaux"
+  },
+  {
+    "id": "e18",
+    "text": "Combien de lettres compte l'alphabet arabe ?",
+    "options": [
+      "24",
+      "26",
+      "28",
+      "32"
+    ],
+    "correctIndex": 2,
+    "difficulty": 1,
+    "explanation": "L'alphabet arabe compte vingt-huit lettres, de alif à ya.",
+    "category": "Langue"
+  },
+  {
+    "id": "e19",
+    "text": "Quelle est la capitale de la France ?",
+    "options": [
+      "Lyon",
+      "Paris",
+      "Marseille",
+      "Nice"
+    ],
+    "correctIndex": 1,
+    "difficulty": 1,
+    "explanation": "Paris est la capitale et la plus grande ville de France ; on y trouve la tour Eiffel.",
+    "category": "Géographie"
+  },
+  {
+    "id": "e20",
+    "text": "Quel organe pompe le sang dans le corps humain ?",
+    "options": [
+      "Les poumons",
+      "Le foie",
+      "Le cœur",
+      "Les reins"
+    ],
+    "correctIndex": 2,
+    "difficulty": 1,
+    "explanation": "Le cœur est un muscle qui propulse le sang dans tout le corps par les vaisseaux sanguins.",
+    "category": "Sciences"
+  },
+  {
+    "id": "m1",
+    "text": "Qui est l'auteur de la « Muqaddima » ?",
+    "options": [
+      "Ibn Khaldoun",
+      "Avicenne",
+      "Averroès",
+      "Al-Farabi"
+    ],
+    "correctIndex": 0,
+    "difficulty": 2,
+    "explanation": "Ibn Khaldoun l'a écrite au XIVe siècle ; il est considéré comme un pionnier de la sociologie.",
+    "category": "Histoire"
+  },
+  {
+    "id": "m2",
+    "text": "Quelle est la plus petite planète du Système solaire ?",
+    "options": [
+      "Mars",
+      "Mercure",
+      "Vénus",
+      "Jupiter"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "Mercure est la plus petite planète et la plus proche du Soleil (Pluton est classée planète naine depuis 2006).",
+    "category": "Sciences"
+  },
+  {
+    "id": "m3",
+    "text": "Quel est le symbole chimique de l'or ?",
+    "options": [
+      "Ag",
+      "Au",
+      "Gd",
+      "Go"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "Au vient du latin aurum ; Ag est le symbole de l'argent.",
+    "category": "Sciences"
+  },
+  {
+    "id": "m4",
+    "text": "En quelle année a eu lieu la première Coupe du monde de football ?",
+    "options": [
+      "1926",
+      "1930",
+      "1934",
+      "1950"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "La première édition s'est jouée en 1930 en Uruguay, qui l'a remportée.",
+    "category": "Sport"
+  },
+  {
+    "id": "m5",
+    "text": "Quel est le plus haut sommet du monde au-dessus du niveau de la mer ?",
+    "options": [
+      "Le Kilimandjaro",
+      "L'Everest",
+      "Le K2",
+      "Le mont Blanc"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "L'Everest, dans l'Himalaya, culmine à environ 8 849 mètres.",
+    "category": "Géographie"
+  },
+  {
+    "id": "m6",
+    "text": "Combien d'os compte le squelette d'un adulte ?",
+    "options": [
+      "186",
+      "206",
+      "226",
+      "256"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "Le squelette adulte compte 206 os ; le nouveau-né en a davantage, dont certains fusionnent en grandissant.",
+    "category": "Sciences"
+  },
+  {
+    "id": "m7",
+    "text": "Quelle est la capitale du Canada ?",
+    "options": [
+      "Toronto",
+      "Ottawa",
+      "Montréal",
+      "Vancouver"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "Ottawa est la capitale du Canada, même si Toronto est sa plus grande ville.",
+    "category": "Géographie"
+  },
+  {
+    "id": "m8",
+    "text": "Qui a peint « La Joconde » ?",
+    "options": [
+      "Michel-Ange",
+      "Léonard de Vinci",
+      "Raphaël",
+      "Van Gogh"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "Léonard de Vinci l'a peinte au début du XVIe siècle ; elle est exposée au Louvre.",
+    "category": "Arts"
+  },
+  {
+    "id": "m9",
+    "text": "Quel est le plus grand pays arabe par la superficie ?",
+    "options": [
+      "L'Arabie saoudite",
+      "L'Algérie",
+      "Le Soudan",
+      "La Libye"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "L'Algérie est le plus grand pays arabe et africain, avec environ 2,38 millions de km².",
+    "category": "Géographie"
+  },
+  {
+    "id": "m10",
+    "text": "Quel est l'animal terrestre le plus rapide ?",
+    "options": [
+      "Le lion",
+      "Le guépard",
+      "La gazelle",
+      "Le cheval"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "Le guépard peut atteindre près de 110 km/h sur de courtes distances.",
+    "category": "Animaux"
+  },
+  {
+    "id": "m11",
+    "text": "Quel gaz est le plus abondant dans l'atmosphère terrestre ?",
+    "options": [
+      "L'oxygène",
+      "L'azote",
+      "L'argon",
+      "Le dioxyde de carbone"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "L'azote représente environ 78 % de l'air, l'oxygène environ 21 %.",
+    "category": "Sciences"
+  },
+  {
+    "id": "m12",
+    "text": "Dans quelle ville se trouve l'université Al Quaraouiyine ?",
+    "options": [
+      "Marrakech",
+      "Fès",
+      "Tunis",
+      "Le Caire"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "Fondée à Fès par Fatima al-Fihriya en 859, elle compte parmi les plus anciennes universités du monde.",
+    "category": "Histoire"
+  },
+  {
+    "id": "m13",
+    "text": "Combien de sourates compte le Coran ?",
+    "options": [
+      "110",
+      "114",
+      "120",
+      "99"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "Le Coran compte 114 sourates, de la Fatiha à la sourate An-Nas.",
+    "category": "Religion"
+  },
+  {
+    "id": "m14",
+    "text": "Quel langage Google recommande-t-il en priorité pour développer des applications Android ?",
+    "options": [
+      "Swift",
+      "Kotlin",
+      "Ruby",
+      "PHP"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "En 2019, Google a annoncé que le développement Android devenait « Kotlin first ».",
+    "category": "Technologie"
+  },
+  {
+    "id": "m15",
+    "text": "Quelle est la plus grande planète du Système solaire ?",
+    "options": [
+      "Saturne",
+      "Jupiter",
+      "Neptune",
+      "Uranus"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "Jupiter est une géante gazeuse plus de deux fois plus massive que toutes les autres planètes réunies.",
+    "category": "Sciences"
+  },
+  {
+    "id": "m16",
+    "text": "Qui a formulé la théorie de la relativité ?",
+    "options": [
+      "Isaac Newton",
+      "Albert Einstein",
+      "Galilée",
+      "Nikola Tesla"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "Einstein a publié la relativité restreinte en 1905 et la relativité générale en 1915.",
+    "category": "Sciences"
+  },
+  {
+    "id": "m17",
+    "text": "Quelle est la capitale de l'Australie ?",
+    "options": [
+      "Sydney",
+      "Melbourne",
+      "Canberra",
+      "Perth"
+    ],
+    "correctIndex": 2,
+    "difficulty": 2,
+    "explanation": "Canberra a été choisie comme compromis entre Sydney et Melbourne.",
+    "category": "Géographie"
+  },
+  {
+    "id": "m18",
+    "text": "À quelle température l'eau bout-elle au niveau de la mer ?",
+    "options": [
+      "90 °C",
+      "100 °C",
+      "110 °C",
+      "120 °C"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "L'eau pure bout à 100 °C sous la pression atmosphérique normale.",
+    "category": "Sciences"
+  },
+  {
+    "id": "m19",
+    "text": "Quel détroit sépare le Maroc de l'Espagne ?",
+    "options": [
+      "Le détroit d'Ormuz",
+      "Le détroit de Gibraltar",
+      "Le détroit de Bab el-Mandeb",
+      "Le Bosphore"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "Le détroit de Gibraltar relie la Méditerranée à l'Atlantique ; il mesure environ 14 km en son point le plus étroit.",
+    "category": "Géographie"
+  },
+  {
+    "id": "m20",
+    "text": "Quel est le seul mammifère capable de vraiment voler ?",
+    "options": [
+      "L'écureuil volant",
+      "La chauve-souris",
+      "Le manchot",
+      "L'autruche"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "La chauve-souris est le seul mammifère qui vole vraiment ; l'écureuil volant ne fait que planer.",
+    "category": "Animaux"
+  },
+  {
+    "id": "h1",
+    "text": "En quelle année Tariq ibn Ziyad a-t-il traversé le détroit vers l'Andalousie ?",
+    "options": [
+      "711",
+      "732",
+      "756",
+      "800"
+    ],
+    "correctIndex": 0,
+    "difficulty": 3,
+    "explanation": "Tariq ibn Ziyad a franchi en 711 le détroit qui porte aujourd'hui son nom : Gibraltar vient de « Jabal Tariq ».",
+    "category": "Histoire"
+  },
+  {
+    "id": "h2",
+    "text": "Quel est le point le plus profond connu des océans ?",
+    "options": [
+      "La fosse des Mariannes",
+      "La fosse de Porto Rico",
+      "La fosse des Tonga",
+      "La fosse de Java"
+    ],
+    "correctIndex": 0,
+    "difficulty": 3,
+    "explanation": "Le Challenger Deep, dans la fosse des Mariannes (Pacifique), atteint près de 11 km de profondeur.",
+    "category": "Géographie"
+  },
+  {
+    "id": "h3",
+    "text": "Qui est l'auteur de l'« Abrégé du calcul par la restauration et la comparaison » (al-jabr) ?",
+    "options": [
+      "Al-Khwarizmi",
+      "Al-Biruni",
+      "Ibn al-Haytham",
+      "Omar Khayyam"
+    ],
+    "correctIndex": 0,
+    "difficulty": 3,
+    "explanation": "Al-Khwarizmi a posé les bases de l'algèbre ; le mot « algorithme » vient de son nom.",
+    "category": "Histoire"
+  },
+  {
+    "id": "h4",
+    "text": "Quel est le numéro atomique du carbone ?",
+    "options": [
+      "6",
+      "8",
+      "12",
+      "14"
+    ],
+    "correctIndex": 0,
+    "difficulty": 3,
+    "explanation": "Le noyau du carbone contient 6 protons ; 12 est le nombre de masse de son isotope le plus courant.",
+    "category": "Sciences"
+  },
+  {
+    "id": "h5",
+    "text": "Qui est l'auteur du « Traité d'optique » (Kitab al-Manazir), qui a révolutionné l'optique ?",
+    "options": [
+      "Ibn al-Haytham",
+      "Al-Kindi",
+      "Al-Razi",
+      "Jabir ibn Hayyan"
+    ],
+    "correctIndex": 0,
+    "difficulty": 3,
+    "explanation": "Ibn al-Haytham a montré que la vision vient de la lumière renvoyée par les objets vers l'œil, en s'appuyant sur l'expérience.",
+    "category": "Histoire"
+  },
+  {
+    "id": "h6",
+    "text": "Quelle est approximativement la vitesse de la lumière dans le vide ?",
+    "options": [
+      "300 000 km/s",
+      "150 000 km/s",
+      "30 000 km/s",
+      "3 millions de km/s"
+    ],
+    "correctIndex": 0,
+    "difficulty": 3,
+    "explanation": "La lumière se déplace à environ 299 792 km par seconde.",
+    "category": "Sciences"
+  },
+  {
+    "id": "h7",
+    "text": "Quelle langue compte le plus de locuteurs natifs au monde ?",
+    "options": [
+      "L'anglais",
+      "L'espagnol",
+      "Le chinois mandarin",
+      "L'hindi"
+    ],
+    "correctIndex": 2,
+    "difficulty": 3,
+    "explanation": "Le mandarin est premier pour les locuteurs natifs ; l'anglais l'est pour le nombre total de locuteurs.",
+    "category": "Langue"
+  },
+  {
+    "id": "h8",
+    "text": "En quelle année Grenade, dernier bastion musulman d'Andalousie, est-elle tombée ?",
+    "options": [
+      "1236",
+      "1453",
+      "1492",
+      "1517"
+    ],
+    "correctIndex": 2,
+    "difficulty": 3,
+    "explanation": "Boabdil a remis Grenade en 1492, l'année même où Christophe Colomb a atteint l'Amérique.",
+    "category": "Histoire"
+  },
+  {
+    "id": "h9",
+    "text": "Quel est le plus grand désert chaud du monde ?",
+    "options": [
+      "Le Rub al-Khali",
+      "Le Sahara",
+      "Le désert de Gobi",
+      "Le Kalahari"
+    ],
+    "correctIndex": 1,
+    "difficulty": 3,
+    "explanation": "Le Sahara est le plus grand désert chaud ; le plus grand désert tout court est l'Antarctique.",
+    "category": "Géographie"
+  },
+  {
+    "id": "h10",
+    "text": "Quel est le plus petit pays du monde par la superficie ?",
+    "options": [
+      "Monaco",
+      "Le Vatican",
+      "Saint-Marin",
+      "Malte"
+    ],
+    "correctIndex": 1,
+    "difficulty": 3,
+    "explanation": "Le Vatican couvre environ 0,44 km² au cœur de Rome.",
+    "category": "Géographie"
+  },
+  {
+    "id": "h11",
+    "text": "Qui a fondé la dynastie idrisside au Maroc ?",
+    "options": [
+      "Idris Ier",
+      "Youssef ibn Tachfine",
+      "Abd al-Mumin",
+      "Moulay Ismaïl"
+    ],
+    "correctIndex": 0,
+    "difficulty": 3,
+    "explanation": "Idris ibn Abdallah a fondé la dynastie idrisside en 788 ; c'est le premier État musulman indépendant du Maroc.",
+    "category": "Histoire"
+  },
+  {
+    "id": "h12",
+    "text": "Combien de chromosomes compte une cellule somatique humaine ?",
+    "options": [
+      "23",
+      "44",
+      "46",
+      "48"
+    ],
+    "correctIndex": 2,
+    "difficulty": 3,
+    "explanation": "Une cellule somatique contient 46 chromosomes (23 paires), une cellule sexuelle 23.",
+    "category": "Sciences"
+  },
+  {
+    "id": "h13",
+    "text": "Quelle planète met le plus de temps à faire un tour sur elle-même ?",
+    "options": [
+      "Mercure",
+      "Vénus",
+      "Mars",
+      "Neptune"
+    ],
+    "correctIndex": 1,
+    "difficulty": 3,
+    "explanation": "Vénus tourne sur elle-même en environ 243 jours terrestres, soit plus que son année (225 jours).",
+    "category": "Sciences"
+  },
+  {
+    "id": "h14",
+    "text": "Dans quelle ville la Charte des Nations unies a-t-elle été signée en 1945 ?",
+    "options": [
+      "New York",
+      "Genève",
+      "San Francisco",
+      "Londres"
+    ],
+    "correctIndex": 2,
+    "difficulty": 3,
+    "explanation": "La Charte a été signée à San Francisco le 26 juin 1945 et est entrée en vigueur en octobre de la même année.",
+    "category": "Histoire"
+  },
+  {
+    "id": "h15",
+    "text": "Quel gaz compose l'essentiel de l'atmosphère de Mars ?",
+    "options": [
+      "L'azote",
+      "Le dioxyde de carbone",
+      "Le méthane",
+      "L'oxygène"
+    ],
+    "correctIndex": 1,
+    "difficulty": 3,
+    "explanation": "L'atmosphère martienne, très ténue, est composée à environ 95 % de dioxyde de carbone.",
+    "category": "Sciences"
+  },
+  {
+    "id": "h16",
+    "text": "Qui a écrit « Nuzhat al-Mushtaq » et dressé sa célèbre carte du monde ?",
+    "options": [
+      "Al-Idrissi",
+      "Ibn Battuta",
+      "Al-Masudi",
+      "Yaqut al-Hamawi"
+    ],
+    "correctIndex": 0,
+    "difficulty": 3,
+    "explanation": "Al-Idrissi a achevé l'ouvrage en 1154 pour Roger II, roi de Sicile.",
+    "category": "Histoire"
+  },
+  {
+    "id": "h17",
+    "text": "Quel voyageur marocain est l'auteur de la « Rihla » (Tuhfat al-Nuzzar) ?",
+    "options": [
+      "Ibn Jubayr",
+      "Ibn Battuta",
+      "Léon l'Africain",
+      "Ibn Fadlan"
+    ],
+    "correctIndex": 1,
+    "difficulty": 3,
+    "explanation": "Né à Tanger en 1304, Ibn Battuta a parcouru le monde musulman et au-delà pendant près de trente ans.",
+    "category": "Histoire"
+  },
+  {
+    "id": "h18",
+    "text": "Quelle est l'unité de l'intensité du courant électrique ?",
+    "options": [
+      "Le volt",
+      "L'ampère",
+      "L'ohm",
+      "Le watt"
+    ],
+    "correctIndex": 1,
+    "difficulty": 3,
+    "explanation": "L'ampère mesure l'intensité, le volt la tension, l'ohm la résistance et le watt la puissance.",
+    "category": "Sciences"
+  },
+  {
+    "id": "h19",
+    "text": "En quelle année l'homme a-t-il marché sur la Lune pour la première fois ?",
+    "options": [
+      "1965",
+      "1969",
+      "1972",
+      "1975"
+    ],
+    "correctIndex": 1,
+    "difficulty": 3,
+    "explanation": "Apollo 11 s'est posé sur la Lune le 20 juillet 1969 ; Neil Armstrong a été le premier à y marcher.",
+    "category": "Histoire"
+  },
+  {
+    "id": "h20",
+    "text": "Quel est l'os le plus long du corps humain ?",
+    "options": [
+      "L'humérus",
+      "Le fémur",
+      "Le tibia",
+      "Le péroné"
+    ],
+    "correctIndex": 1,
+    "difficulty": 3,
+    "explanation": "Le fémur est l'os le plus long et le plus solide du corps.",
+    "category": "Sciences"
+  }
+]

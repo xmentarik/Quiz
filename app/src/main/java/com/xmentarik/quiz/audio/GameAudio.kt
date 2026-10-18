@@ -28,13 +28,13 @@ class GameAudio(context: Context) {
         .apply { setOnLoadCompleteListener { _, id, status -> if (status == 0) loadedSounds += id } }
     private val soundIds: Map<SoundCue, Int> = SoundCue.entries.associateWith { soundPool.load(appContext, it.rawRes, 1) }
 
-    private var settings = AudioSettings()
+    private var settings = FeedbackSettings()
     private var paused = false
     private var wantedTrack: MusicTrack? = null
     private var playerTrack: MusicTrack? = null
     private var player: MediaPlayer? = null
 
-    fun applySettings(newSettings: AudioSettings) {
+    fun applySettings(newSettings: FeedbackSettings) {
         if (newSettings == settings) return
         settings = newSettings
         syncMusic()

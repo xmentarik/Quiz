@@ -18,7 +18,7 @@ import com.xmentarik.quiz.ui.theme.QuizColors
 fun QuizApp(viewModel: QuizViewModel) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val stats by viewModel.stats.collectAsStateWithLifecycle()
-    val audioSettings by viewModel.audioSettings.collectAsStateWithLifecycle()
+    val feedbackSettings by viewModel.feedbackSettings.collectAsStateWithLifecycle()
 
     Box(
         Modifier
@@ -54,12 +54,14 @@ fun QuizApp(viewModel: QuizViewModel) {
                 else -> HomeScreen(
                     state = state,
                     stats = stats,
-                    audioSettings = audioSettings,
+                    feedbackSettings = feedbackSettings,
                     onUseAiChange = viewModel::setUseAi,
                     onTopicChange = viewModel::setTopic,
                     onPlay = viewModel::startGame,
                     onSoundChange = viewModel::setSoundEnabled,
                     onMusicChange = viewModel::setMusicEnabled,
+                    onVibrationChange = viewModel::setVibrationEnabled,
+                    onLanguageChange = viewModel::setLanguage,
                 )
             }
         }

@@ -22,9 +22,10 @@ enum class SoundCue(val volume: Float = 1f) {
 
 enum class MusicTrack { MENU, CALM, TENSE, INTENSE }
 
-data class AudioSettings(
+data class FeedbackSettings(
     val soundEnabled: Boolean = true,
     val musicEnabled: Boolean = true,
+    val vibrationEnabled: Boolean = true,
 )
 
 /** Decides what the player hears for each UI state. Pure, so it can be unit tested. */

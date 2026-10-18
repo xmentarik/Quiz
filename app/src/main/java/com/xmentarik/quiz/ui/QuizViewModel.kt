@@ -6,7 +6,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.xmentarik.quiz.QuizApplication
-import com.xmentarik.quiz.audio.AudioSettings
+import com.xmentarik.quiz.audio.FeedbackSettings
+import com.xmentarik.quiz.data.AppLanguage
 import com.xmentarik.quiz.data.PlayerStats
 import com.xmentarik.quiz.data.QuestionRepository
 import com.xmentarik.quiz.data.QuestionSource
@@ -37,7 +38,8 @@ class QuizViewModel(
     )
     val state: StateFlow<QuizUiState> = _state.asStateFlow()
     val stats: StateFlow<PlayerStats> = statsStore.stats
-    val audioSettings: StateFlow<AudioSettings> = settingsStore.audio
+    val feedbackSettings: StateFlow<FeedbackSettings> = settingsStore.feedback
+    val language: StateFlow<AppLanguage> = settingsStore.language
 
     private var timerJob: Job? = null
     private var loadJob: Job? = null
@@ -45,13 +47,21 @@ class QuizViewModel(
 
     fun setUseAi(enabled: Boolean) = _state.update { it.copy(useAi = enabled && it.aiAvailable) }
 
-    fun setTopic(topic: String) = _state.update { it.copy(topic = topic) }
+    fun setTopic(index: Int) = _state.update { it.copy(topicIndex = index) }
 
     fun setSoundEnabled(enabled: Boolean) =
-        settingsStore.updateAudio(audioSettings.value.copy(soundEnabled = enabled))
+        settingsStore.updateFeedback(feedbackSettings.value.copy(soundEnabled = enabled))
 
     fun setMusicEnabled(enabled: Boolean) =
-        settingsStore.updateAudio(audioSettings.value.copy(musicEnabled = enabled))
+        settingsStore.updateFeedback(feedbackSettings.value.copy(musicEnabled = enabled))
+
+    fun setVibrationEnabled(enabled: Boolean) =
+        settingsStore.updateFeedback(feedbackSettings.value.copy(vibrationEnabled = enabled))
+
+    /** Only offered on the home screen; the activity recreates itself in the new language. */
+    fun setLanguage(language: AppLanguage) {
+        if (_state.value.screen == Screen.HOME && !_state.value.loading) settingsStore.updateLanguage(language)
+    }
 
     fun startGame() {
         if (_state.value.loading) return
@@ -60,7 +70,9 @@ class QuizViewModel(
         loadJob = viewModelScope.launch {
             try {
                 val current = _state.value
-                val loaded = repository.loadGame(current.useAi, current.topic)
+                val gameLanguage = language.value
+                val topic = gameLanguage.topics.getOrElse(current.topicIndex) { gameLanguage.topics.first() }
+                val loaded = repository.loadGame(current.useAi, topic, gameLanguage)
                 gameRecorded = false
                 _state.update {
                     it.copy(

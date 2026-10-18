@@ -7,16 +7,31 @@ import java.io.File
 import kotlin.random.Random
 
 class QuestionBankTest {
-    private val bundled: List<Question> by lazy {
-        QuestionJson.parseList(File("src/main/assets/questions_ar.json").readText())
+    private fun bank(language: AppLanguage): List<Question> =
+        QuestionJson.parseList(File("src/main/assets/${language.questionsAsset}").readText())
+
+    private val bundled: List<Question> by lazy { bank(AppLanguage.ARABIC) }
+
+    @Test
+    fun everyBundledBankIsValidAndUnique() {
+        AppLanguage.entries.forEach { language ->
+            val questions = bank(language)
+            assertEquals(language.name, 60, questions.size)
+            assertEquals(questions.size, questions.map { it.id }.toSet().size)
+            assertEquals(questions.size, questions.map { it.text }.toSet().size)
+            (1..3).forEach { level -> assertEquals(20, questions.count { it.difficulty == level }) }
+        }
     }
 
     @Test
-    fun bundledBankIsValidAndUnique() {
-        assertEquals(60, bundled.size)
-        assertEquals(bundled.size, bundled.map { it.id }.toSet().size)
-        assertEquals(bundled.size, bundled.map { it.text }.toSet().size)
-        (1..3).forEach { level -> assertEquals(20, bundled.count { it.difficulty == level }) }
+    fun translationsMatchTheArabicBank() {
+        val french = bank(AppLanguage.FRENCH).associateBy { it.id }
+        bundled.forEach { arabic ->
+            val translated = french.getValue(arabic.id)
+            assertEquals(arabic.id, arabic.correctIndex, translated.correctIndex)
+            assertEquals(arabic.id, arabic.difficulty, translated.difficulty)
+            assertTrue(arabic.id, translated.explanation.isNotBlank())
+        }
     }
 
     @Test

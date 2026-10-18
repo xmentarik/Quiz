@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">La Route du Million</string>
+
+    <!-- Home -->
+    <string name="home_tagline">15 questions vous séparent du million</string>
+    <string name="home_best_prize">Meilleur gain : %1$s</string>
+    <string name="home_games_played">Parties jouées : %1$d</string>
+    <string name="home_million_wins">Millions gagnés : %1$d</string>
+    <string name="home_ai_title">Nouvelles questions par IA</string>
+    <string name="home_ai_subtitle">Gemini génère des questions inédites sur le thème de votre choix</string>
+    <string name="home_ai_missing_key">Ajoutez GEMINI_API_KEY dans local.properties pour activer cette fonction</string>
+    <string name="home_topic">Thème</string>
+    <string name="home_play">Jouer</string>
+    <string name="home_sound">Effets</string>
+    <string name="home_music">Musique</string>
+    <string name="home_vibration">Vibration</string>
+    <string name="home_loading">Préparation des questions…</string>
+
+    <!-- Game -->
+    <string name="game_question_of">Question %1$d sur %2$d</string>
+    <string name="game_for_prize">Pour %1$s</string>
+    <string name="game_final_answer">C\'est votre dernier mot ?</string>
+    <string name="game_walk_away">Partir avec %1$s</string>
+    <string name="game_next">Question suivante</string>
+    <string name="game_see_result">Voir le résultat</string>
+    <string name="game_correct">Bonne réponse !</string>
+    <string name="game_wrong">Mauvaise réponse</string>
+    <string name="game_time_up">Temps écoulé !</string>
+    <string name="game_ladder">Pyramide des gains</string>
+    <string name="game_safe_haven">Palier</string>
+    <string name="game_walk_away_title">Voulez-vous abandonner ?</string>
+    <string name="game_walk_away_body">Vous repartez avec %1$s et la partie s\'arrête.</string>
+    <string name="game_confirm_walk_away">Oui, je m\'arrête</string>
+    <string name="game_keep_playing">Continuer</string>
+    <string name="game_ai_fallback">Impossible de générer des questions par IA, place aux questions de l\'application.</string>
+
+    <!-- Lifelines -->
+    <string name="lifeline_fifty">50:50</string>
+    <string name="lifeline_audience">Public</string>
+    <string name="lifeline_friend">Ami</string>
+    <string name="lifeline_switch">Changer</string>
+    <string name="audience_title">L\'avis du public</string>
+    <string name="friend_title">Appel à un ami</string>
+    <string name="friend_says">Je pense que c\'est « %1$s » (%2$s).</string>
+    <string name="friend_confidence">sûr à %1$d %%</string>
+    <string name="ok">OK</string>
+
+    <!-- Result -->
+    <string name="result_won">Bravo ! Vous êtes millionnaire !</string>
+    <string name="result_walked_away">Sage décision</string>
+    <string name="result_lost">Partie terminée</string>
+    <string name="result_prize_label">Votre gain final</string>
+    <string name="result_correct_answers">Bonnes réponses : %1$d sur %2$d</string>
+    <string name="result_new_record">Nouveau record !</string>
+    <string name="result_play_again">Rejouer</string>
+    <string name="result_home">Menu principal</string>
+    <string name="result_share">Partager mon score</string>
+    <string name="result_share_text">J\'ai gagné %1$s points à « La Route du Million » ! Sauras-tu faire mieux ?</string>
+
+    <string name="points">%1$s points</string>
+</resources>

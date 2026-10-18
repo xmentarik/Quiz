@@ -31,12 +31,13 @@ import com.xmentarik.quiz.R
 import com.xmentarik.quiz.data.Question
 import com.xmentarik.quiz.game.FriendAdvice
 import com.xmentarik.quiz.game.MoneyLadder
-import com.xmentarik.quiz.ui.OptionLabels
+import com.xmentarik.quiz.ui.LocalAppLanguage
 import com.xmentarik.quiz.ui.formatPrize
 import com.xmentarik.quiz.ui.theme.QuizColors
 
 @Composable
 fun AudienceDialog(votes: List<Int>, hidden: Set<Int>, onDismiss: () -> Unit) {
+    val labels = LocalAppLanguage.current.optionLabels
     AlertDialog(
         onDismissRequest = onDismiss,
         confirmButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.ok)) } },
@@ -64,7 +65,7 @@ fun AudienceDialog(votes: List<Int>, hidden: Set<Int>, onDismiss: () -> Unit) {
                                 .height((140 * percent / 100).coerceAtLeast(2).dp)
                                 .background(QuizColors.Gold, RoundedCornerShape(topStart = 6.dp, topEnd = 6.dp)),
                         )
-                        Text(OptionLabels[index], fontWeight = FontWeight.Bold)
+                        Text(labels[index], fontWeight = FontWeight.Bold)
                     }
                 }
             }
@@ -74,7 +75,8 @@ fun AudienceDialog(votes: List<Int>, hidden: Set<Int>, onDismiss: () -> Unit) {
 
 @Composable
 fun FriendDialog(advice: FriendAdvice, question: Question, onDismiss: () -> Unit) {
-    val answer = "${OptionLabels[advice.optionIndex]}: ${question.options[advice.optionIndex]}"
+    val labels = LocalAppLanguage.current.optionLabels
+    val answer = "${labels[advice.optionIndex]}: ${question.options[advice.optionIndex]}"
     AlertDialog(
         onDismissRequest = onDismiss,
         confirmButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.ok)) } },

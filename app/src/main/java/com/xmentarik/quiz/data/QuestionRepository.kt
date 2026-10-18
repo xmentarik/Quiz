@@ -16,28 +16,30 @@ class QuestionRepository(
 ) {
     val aiAvailable: Boolean get() = generator.isConfigured
 
-    private var localCache: List<Question>? = null
+    private val localCache = mutableMapOf<AppLanguage, List<Question>>()
 
-    private suspend fun localQuestions(): List<Question> = localCache ?: withContext(Dispatchers.IO) {
-        context.assets.open(LOCAL_QUESTIONS_ASSET).bufferedReader().use { QuestionJson.parseList(it.readText()) }
-    }.also { localCache = it }
+    private suspend fun localQuestions(language: AppLanguage): List<Question> = localCache[language]
+        ?: withContext(Dispatchers.IO) {
+            context.assets.open(language.questionsAsset).bufferedReader().use { QuestionJson.parseList(it.readText()) }
+        }.also { localCache[language] = it }
 
     /** Builds a game from AI questions when requested, falling back to the bundled bank on any failure. */
-    suspend fun loadGame(useAi: Boolean, topic: String, random: Random = Random.Default): LoadedGame {
-        val local = localQuestions()
+    suspend fun loadGame(
+        useAi: Boolean,
+        topic: String,
+        language: AppLanguage,
+        random: Random = Random.Default,
+    ): LoadedGame {
+        val local = localQuestions(language)
         if (!useAi || !aiAvailable) return LoadedGame(QuestionSetBuilder.build(local, random), QuestionSource.LOCAL)
 
         return try {
-            val generated = generator.generate(topic)
+            val generated = generator.generate(topic, language)
             LoadedGame(QuestionSetBuilder.build(generated, random, fallback = local), QuestionSource.AI)
         } catch (e: CancellationException) {
             throw e
         } catch (e: Exception) {
             LoadedGame(QuestionSetBuilder.build(local, random), QuestionSource.LOCAL_AFTER_AI_FAILURE)
         }
-    }
-
-    companion object {
-        const val LOCAL_QUESTIONS_ASSET = "questions_ar.json"
     }
 }

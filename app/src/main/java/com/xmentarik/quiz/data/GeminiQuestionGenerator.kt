@@ -27,7 +27,7 @@ class GeminiQuestionGenerator(
 ) {
     val isConfigured: Boolean get() = apiKey.isNotBlank()
 
-    suspend fun generate(topic: String, perLevel: Int = DEFAULT_PER_LEVEL): List<Question> =
+    suspend fun generate(topic: String, language: AppLanguage, perLevel: Int = DEFAULT_PER_LEVEL): List<Question> =
         withContext(Dispatchers.IO) {
             val connection = URL("$baseUrl/models/$model:generateContent").openConnection() as HttpURLConnection
             try {
@@ -37,7 +37,7 @@ class GeminiQuestionGenerator(
                 connection.doOutput = true
                 connection.setRequestProperty("Content-Type", "application/json; charset=utf-8")
                 connection.setRequestProperty("x-goog-api-key", apiKey)
-                connection.outputStream.use { it.write(buildRequest(topic, perLevel).toByteArray()) }
+                connection.outputStream.use { it.write(buildRequest(topic, language, perLevel).toByteArray()) }
 
                 val code = connection.responseCode
                 val stream = if (code in 200..299) connection.inputStream else connection.errorStream
@@ -52,7 +52,8 @@ class GeminiQuestionGenerator(
     companion object {
         const val DEFAULT_PER_LEVEL = 6
 
-        internal fun buildPrompt(topic: String, perLevel: Int): String = """
+        internal fun buildPrompt(topic: String, language: AppLanguage, perLevel: Int): String = when (language) {
+            AppLanguage.ARABIC -> """
             أنت معدّ أسئلة لبرنامج مسابقات ثقافية على غرار "من سيربح المليون".
             أنشئ ${perLevel * 3} سؤالاً باللغة العربية الفصحى في موضوع: «$topic».
             - $perLevel أسئلة سهلة (difficulty = 1) و $perLevel متوسطة (difficulty = 2) و $perLevel صعبة (difficulty = 3).
@@ -61,14 +62,25 @@ class GeminiQuestionGenerator(
             - اجعل الخيارات الخاطئة معقولة ومقنعة.
             - explanation: جملة أو جملتان تشرحان الإجابة الصحيحة بمعلومة مفيدة.
             - تأكد من صحة كل معلومة، وتجنب الأسئلة التي تتغير إجابتها مع الزمن.
-        """.trimIndent()
+            """.trimIndent()
+            AppLanguage.FRENCH -> """
+            Tu écris les questions d'un jeu télévisé de culture générale du type « Qui veut gagner des millions ? ».
+            Rédige ${perLevel * 3} questions en français sur le thème : « $topic ».
+            - $perLevel faciles (difficulty = 1), $perLevel moyennes (difficulty = 2) et $perLevel difficiles (difficulty = 3).
+            - Chaque question a 4 propositions courtes et différentes, et une seule bonne réponse incontestable.
+            - correctIndex est l'indice de la bonne réponse, de 0 à 3 ; varie sa position au hasard.
+            - Les mauvaises réponses doivent être plausibles.
+            - explanation : une ou deux phrases qui expliquent la bonne réponse avec une information utile.
+            - Vérifie l'exactitude de chaque fait et évite les questions dont la réponse change avec le temps.
+            """.trimIndent()
+        }
 
-        internal fun buildRequest(topic: String, perLevel: Int): String {
+        internal fun buildRequest(topic: String, language: AppLanguage, perLevel: Int): String {
             val request: JsonObject = buildJsonObject {
                 putJsonArray("contents") {
                     addJsonObject {
                         put("role", "user")
-                        putJsonArray("parts") { addJsonObject { put("text", buildPrompt(topic, perLevel)) } }
+                        putJsonArray("parts") { addJsonObject { put("text", buildPrompt(topic, language, perLevel)) } }
                     }
                 }
                 putJsonObject("generationConfig") {

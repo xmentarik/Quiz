@@ -32,9 +32,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.xmentarik.quiz.R
-import com.xmentarik.quiz.audio.AudioSettings
+import com.xmentarik.quiz.audio.FeedbackSettings
+import com.xmentarik.quiz.data.AppLanguage
 import com.xmentarik.quiz.data.PlayerStats
-import com.xmentarik.quiz.ui.QuizTopics
+import com.xmentarik.quiz.ui.LocalAppLanguage
 import com.xmentarik.quiz.ui.QuizUiState
 import com.xmentarik.quiz.ui.formatPrize
 import com.xmentarik.quiz.ui.theme.QuizColors
@@ -43,12 +44,14 @@ import com.xmentarik.quiz.ui.theme.QuizColors
 fun HomeScreen(
     state: QuizUiState,
     stats: PlayerStats,
-    audioSettings: AudioSettings,
+    feedbackSettings: FeedbackSettings,
     onUseAiChange: (Boolean) -> Unit,
-    onTopicChange: (String) -> Unit,
+    onTopicChange: (Int) -> Unit,
     onPlay: () -> Unit,
     onSoundChange: (Boolean) -> Unit,
     onMusicChange: (Boolean) -> Unit,
+    onVibrationChange: (Boolean) -> Unit,
+    onLanguageChange: (AppLanguage) -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -58,7 +61,7 @@ fun HomeScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(20.dp),
     ) {
-        Spacer(Modifier.height(24.dp))
+        LanguageRow(enabled = !state.loading, onLanguageChange = onLanguageChange)
         Text("💎", fontSize = 64.sp)
         Text(
             text = stringResource(R.string.app_name),
@@ -75,7 +78,7 @@ fun HomeScreen(
 
         StatsCard(stats)
         AiCard(state, onUseAiChange, onTopicChange)
-        AudioRow(audioSettings, onSoundChange, onMusicChange)
+        FeedbackRow(feedbackSettings, onSoundChange, onMusicChange, onVibrationChange)
 
         Button(
             onClick = onPlay,
@@ -118,13 +121,31 @@ private fun StatsCard(stats: PlayerStats) {
     }
 }
 
+/** Each language is written in its own script so anyone can find theirs. */
 @Composable
-private fun AudioRow(
-    settings: AudioSettings,
+private fun LanguageRow(enabled: Boolean, onLanguageChange: (AppLanguage) -> Unit) {
+    val current = LocalAppLanguage.current
+    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        AppLanguage.entries.forEach { language ->
+            FilterChip(
+                selected = language == current,
+                onClick = { onLanguageChange(language) },
+                label = { Text(if (language == AppLanguage.ARABIC) "العربية" else "Français") },
+                enabled = enabled,
+            )
+        }
+    }
+}
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun FeedbackRow(
+    settings: FeedbackSettings,
     onSoundChange: (Boolean) -> Unit,
     onMusicChange: (Boolean) -> Unit,
+    onVibrationChange: (Boolean) -> Unit,
 ) {
-    Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+    FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)) {
         FilterChip(
             selected = settings.soundEnabled,
             onClick = { onSoundChange(!settings.soundEnabled) },
@@ -135,6 +156,11 @@ private fun AudioRow(
             onClick = { onMusicChange(!settings.musicEnabled) },
             label = { Text((if (settings.musicEnabled) "🎵 " else "🔇 ") + stringResource(R.string.home_music)) },
         )
+        FilterChip(
+            selected = settings.vibrationEnabled,
+            onClick = { onVibrationChange(!settings.vibrationEnabled) },
+            label = { Text((if (settings.vibrationEnabled) "📳 " else "📴 ") + stringResource(R.string.home_vibration)) },
+        )
     }
 }
 
@@ -143,7 +169,7 @@ private fun AudioRow(
 private fun AiCard(
     state: QuizUiState,
     onUseAiChange: (Boolean) -> Unit,
-    onTopicChange: (String) -> Unit,
+    onTopicChange: (Int) -> Unit,
 ) {
     Card(
         colors = CardDefaults.cardColors(containerColor = QuizColors.OptionBackground),
@@ -170,10 +196,10 @@ private fun AiCard(
             if (state.useAi) {
                 Text(stringResource(R.string.home_topic), style = MaterialTheme.typography.labelLarge)
                 FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    QuizTopics.forEach { topic ->
+                    LocalAppLanguage.current.topics.forEachIndexed { index, topic ->
                         FilterChip(
-                            selected = topic == state.topic,
-                            onClick = { onTopicChange(topic) },
+                            selected = index == state.topicIndex,
+                            onClick = { onTopicChange(index) },
                             label = { Text(topic) },
                             enabled = !state.loading,
                         )

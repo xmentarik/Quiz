@@ -13,7 +13,7 @@ class GeminiQuestionGeneratorTest {
 
     @Test
     fun requestAsksForStructuredJson() {
-        val request = Json.parseToJsonElement(GeminiQuestionGenerator.buildRequest("علوم", 6)).jsonObject
+        val request = Json.parseToJsonElement(GeminiQuestionGenerator.buildRequest("علوم", AppLanguage.ARABIC, 6)).jsonObject
         val config = request["generationConfig"]!!.jsonObject
         assertEquals("application/json", config["responseMimeType"]!!.jsonPrimitive.content)
         assertEquals("ARRAY", config["responseSchema"]!!.jsonObject["type"]!!.jsonPrimitive.content)
@@ -21,6 +21,14 @@ class GeminiQuestionGeneratorTest {
             .jsonObject["text"]!!.jsonPrimitive.content
         assertTrue(prompt.contains("علوم"))
         assertTrue(prompt.contains("18"))
+    }
+
+    @Test
+    fun frenchPromptAsksForFrenchQuestions() {
+        val prompt = GeminiQuestionGenerator.buildPrompt("Sciences", AppLanguage.FRENCH, 6)
+        assertTrue(prompt.contains("en français"))
+        assertTrue(prompt.contains("« Sciences »"))
+        assertTrue(prompt.contains("18 questions"))
     }
 
     @Test
