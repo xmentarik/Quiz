@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Road to a Million</string>
+
+    <!-- Home -->
+    <string name="home_tagline">15 questions stand between you and a million</string>
+    <string name="home_best_prize">Best score: %1$s</string>
+    <string name="home_games_played">Games played: %1$d</string>
+    <string name="home_million_wins">Millions won: %1$d</string>
+    <string name="home_ai_title">New AI questions</string>
+    <string name="home_ai_subtitle">Gemini writes fresh questions on the topic you pick</string>
+    <string name="home_ai_missing_key">Add GEMINI_API_KEY to local.properties to turn this on</string>
+    <string name="home_topic">Topic</string>
+    <string name="home_play">Play</string>
+    <string name="home_sound">Sound effects</string>
+    <string name="home_music">Music</string>
+    <string name="home_vibration">Vibration</string>
+    <string name="home_loading">Getting the questions ready…</string>
+
+    <!-- Game -->
+    <string name="game_question_of">Question %1$d of %2$d</string>
+    <string name="game_for_prize">For %1$s</string>
+    <string name="game_final_answer">Final answer?</string>
+    <string name="game_walk_away">Walk away with %1$s</string>
+    <string name="game_next">Next question</string>
+    <string name="game_see_result">See result</string>
+    <string name="game_correct">Correct!</string>
+    <string name="game_wrong">Wrong answer</string>
+    <string name="game_time_up">Time\'s up!</string>
+    <string name="game_ladder">Prize ladder</string>
+    <string name="game_safe_haven">Safe</string>
+    <string name="game_walk_away_title">Walk away?</string>
+    <string name="game_walk_away_body">You keep %1$s and the game ends.</string>
+    <string name="game_confirm_walk_away">Yes, walk away</string>
+    <string name="game_keep_playing">Keep playing</string>
+    <string name="game_ai_fallback">Couldn\'t generate AI questions, so you\'ll play with the built-in ones.</string>
+
+    <!-- Lifelines -->
+    <string name="lifeline_fifty">50:50</string>
+    <string name="lifeline_audience">Audience</string>
+    <string name="lifeline_friend">Friend</string>
+    <string name="lifeline_switch">Switch</string>
+    <string name="audience_title">Ask the audience</string>
+    <string name="friend_title">Phone a friend</string>
+    <string name="friend_says">I think it\'s “%1$s” (%2$s).</string>
+    <string name="friend_confidence">%1$d%% sure</string>
+    <string name="ok">OK</string>
+
+    <!-- Result -->
+    <string name="result_won">Congratulations! You\'re a millionaire!</string>
+    <string name="result_walked_away">Smart move</string>
+    <string name="result_lost">Game over</string>
+    <string name="result_prize_label">Your final score</string>
+    <string name="result_correct_answers">Correct answers: %1$d of %2$d</string>
+    <string name="result_new_record">New record!</string>
+    <string name="result_play_again">Play again</string>
+    <string name="result_home">Main menu</string>
+    <string name="result_share">Share my score</string>
+    <string name="result_share_text">I scored %1$s points in “Road to a Million”! Can you beat me?</string>
+
+    <!-- Online -->
+    <string name="home_leaderboard">World ranking</string>
+    <string name="home_challenge">Challenge friends</string>
+    <string name="back">Back</string>
+    <string name="refresh">Refresh</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="name_title">Pick a nickname</string>
+    <string name="name_hint">2 to 20 characters, shown to other players</string>
+    <string name="name_invalid">Use 2 to 20 letters or digits</string>
+    <string name="leaderboard_title">World ranking</string>
+    <string name="leaderboard_my_rank">Your rank: #%1$d</string>
+    <string name="leaderboard_empty">Nobody is ranked yet. Be the first!</string>
+    <string name="leaderboard_you">(you)</string>
+    <string name="challenge_title">Friends challenge</string>
+    <string name="challenge_create_title">Create a challenge</string>
+    <string name="challenge_create_body">Play 15 questions, then send the code to your friends: they get exactly the same questions.</string>
+    <string name="challenge_create">Create and play</string>
+    <string name="challenge_join_title">Join a challenge</string>
+    <string name="challenge_code_label">Challenge code</string>
+    <string name="challenge_join">Join</string>
+    <string name="challenge_mine">My challenges</string>
+    <string name="challenge_results_title">Challenge %1$s</string>
+    <string name="challenge_by">Created by %1$s</string>
+    <string name="challenge_share">Send the code to my friends</string>
+    <string name="challenge_invite">I challenge you in “Road to a Million”! Open “Challenge friends” and enter the code %1$s</string>
+    <string name="challenge_no_results">Nobody has finished this challenge yet.</string>
+    <string name="challenge_correct_time">%1$d correct · %2$s</string>
+    <string name="result_challenge_ranking">Challenge ranking</string>
+    <string name="error_not_configured">Online features are off in this build: add google-services.json (see the README).</string>
+    <string name="error_network">Couldn\'t connect. Check your internet connection and try again.</string>
+    <string name="error_bad_code">The code has 6 letters and digits.</string>
+    <string name="error_not_found">No challenge with this code.</string>
+    <string name="error_already_played">You\'ve already played this challenge: here are the results.</string>
+
+    <string name="points">%1$s points</string>
+</resources>

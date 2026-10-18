@@ -83,6 +83,12 @@ describe('challenges', () => {
     await assertSucceeds(getDoc(doc(as('bob'), 'challenges/AB3K9Z')));
   });
 
+  test('challenges can be created in every app language', async () => {
+    for (const [code, language] of [['AAAAAA', 'ar'], ['BBBBBB', 'fr'], ['CCCCCC', 'en']]) {
+      await assertSucceeds(setDoc(doc(as('alice'), `challenges/${code}`), challenge('alice', { language })));
+    }
+  });
+
   test('codes outside the unambiguous alphabet are rejected', async () => {
     await assertFails(setDoc(doc(as('alice'), 'challenges/AB0K9Z'), challenge('alice')));
     await assertFails(setDoc(doc(as('alice'), 'challenges/ab3k9z'), challenge('alice')));
@@ -91,7 +97,7 @@ describe('challenges', () => {
 
   test('a challenge cannot be created in someone else\'s name or in an unknown language', async () => {
     await assertFails(setDoc(doc(as('mallory'), 'challenges/AB3K9Z'), challenge('alice')));
-    await assertFails(setDoc(doc(as('alice'), 'challenges/AB3K9Z'), challenge('alice', { language: 'en' })));
+    await assertFails(setDoc(doc(as('alice'), 'challenges/AB3K9Z'), challenge('alice', { language: 'de' })));
   });
 
   test('a challenge cannot be changed after creation', async () => {

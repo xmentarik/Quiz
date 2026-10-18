@@ -13,10 +13,17 @@ class AppLanguageTest {
     }
 
     @Test
-    fun frenchDevicesStartInFrench() {
+    fun devicesStartInTheirLanguageOrArabic() {
         assertEquals(AppLanguage.FRENCH, AppLanguage.defaultFor("fr"))
+        assertEquals(AppLanguage.ENGLISH, AppLanguage.defaultFor("en"))
         assertEquals(AppLanguage.ARABIC, AppLanguage.defaultFor("ar"))
-        assertEquals(AppLanguage.ARABIC, AppLanguage.defaultFor("en"))
+        assertEquals(AppLanguage.ARABIC, AppLanguage.defaultFor("de"))
+    }
+
+    @Test
+    fun onlyArabicIsRightToLeft() {
+        assertEquals(listOf(AppLanguage.ARABIC), AppLanguage.entries.filter { it.isRtl })
+        assertEquals(AppLanguage.entries.size, AppLanguage.entries.map { it.nativeName }.toSet().size)
     }
 
     @Test

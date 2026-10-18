@@ -148,7 +148,7 @@ private fun LanguageRow(enabled: Boolean, onLanguageChange: (AppLanguage) -> Uni
             FilterChip(
                 selected = language == current,
                 onClick = { onLanguageChange(language) },
-                label = { Text(if (language == AppLanguage.ARABIC) "العربية" else "Français") },
+                label = { Text(language.nativeName) },
                 enabled = enabled,
             )
         }

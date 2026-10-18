@@ -25,12 +25,14 @@ class QuestionBankTest {
 
     @Test
     fun translationsMatchTheArabicBank() {
-        val french = bank(AppLanguage.FRENCH).associateBy { it.id }
-        bundled.forEach { arabic ->
-            val translated = french.getValue(arabic.id)
-            assertEquals(arabic.id, arabic.correctIndex, translated.correctIndex)
-            assertEquals(arabic.id, arabic.difficulty, translated.difficulty)
-            assertTrue(arabic.id, translated.explanation.isNotBlank())
+        AppLanguage.entries.filter { it != AppLanguage.ARABIC }.forEach { language ->
+            val translations = bank(language).associateBy { it.id }
+            bundled.forEach { arabic ->
+                val translated = translations.getValue(arabic.id)
+                assertEquals("${language.name} ${arabic.id}", arabic.correctIndex, translated.correctIndex)
+                assertEquals("${language.name} ${arabic.id}", arabic.difficulty, translated.difficulty)
+                assertTrue("${language.name} ${arabic.id}", translated.explanation.isNotBlank())
+            }
         }
     }
 

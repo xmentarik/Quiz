@@ -32,6 +32,17 @@ class GeminiQuestionGeneratorTest {
     }
 
     @Test
+    fun everyLanguageHasItsOwnPrompt() {
+        val english = GeminiQuestionGenerator.buildPrompt("Science", AppLanguage.ENGLISH, 6)
+        assertTrue(english.contains("in English"))
+        assertTrue(english.contains("\"Science\""))
+        assertEquals(
+            AppLanguage.entries.size,
+            AppLanguage.entries.map { GeminiQuestionGenerator.buildPrompt("x", it, 6) }.toSet().size,
+        )
+    }
+
+    @Test
     fun parsesTextPartsAndSkipsThoughts() {
         val questions = """[{"text":"س1","options":["أ","ب","ج","د"],"correctIndex":1,"difficulty":1,"explanation":"ش"},""" +
             """{"text":"س2","options":["أ","ب","ج"],"correctIndex":1,"difficulty":2,"explanation":"ش"}]"""

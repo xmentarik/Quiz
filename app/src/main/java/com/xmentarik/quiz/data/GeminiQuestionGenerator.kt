@@ -73,6 +73,16 @@ class GeminiQuestionGenerator(
             - explanation : une ou deux phrases qui expliquent la bonne réponse avec une information utile.
             - Vérifie l'exactitude de chaque fait et évite les questions dont la réponse change avec le temps.
             """.trimIndent()
+            AppLanguage.ENGLISH -> """
+            You write the questions for a TV general-knowledge quiz show in the style of "Who Wants to Be a Millionaire".
+            Write ${perLevel * 3} questions in English on the topic: "$topic".
+            - $perLevel easy (difficulty = 1), $perLevel medium (difficulty = 2) and $perLevel hard (difficulty = 3).
+            - Each question has 4 short, distinct options and exactly one indisputable correct answer.
+            - correctIndex is the index of the correct option, from 0 to 3; vary its position at random.
+            - Make the wrong options plausible.
+            - explanation: one or two sentences explaining the correct answer with a useful fact.
+            - Check that every fact is accurate and avoid questions whose answer changes over time.
+            """.trimIndent()
         }
 
         internal fun buildRequest(topic: String, language: AppLanguage, perLevel: Int): String {

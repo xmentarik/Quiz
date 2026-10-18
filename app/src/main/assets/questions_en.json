@@ -1,0 +1,842 @@
+[
+  {
+    "id": "e1",
+    "text": "What is the capital of Morocco?",
+    "options": [
+      "Casablanca",
+      "Rabat",
+      "Fez",
+      "Marrakesh"
+    ],
+    "correctIndex": 1,
+    "difficulty": 1,
+    "explanation": "Rabat is the administrative and political capital of the Kingdom of Morocco.",
+    "category": "Geography"
+  },
+  {
+    "id": "e2",
+    "text": "How many days are there in a week?",
+    "options": [
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "correctIndex": 2,
+    "difficulty": 1,
+    "explanation": "A week has seven days.",
+    "category": "General knowledge"
+  },
+  {
+    "id": "e3",
+    "text": "Which animal is known as the king of the jungle?",
+    "options": [
+      "The tiger",
+      "The lion",
+      "The elephant",
+      "The wolf"
+    ],
+    "correctIndex": 1,
+    "difficulty": 1,
+    "explanation": "The lion earned the title for its strength and presence, even though it mostly lives on the savannah.",
+    "category": "Animals"
+  },
+  {
+    "id": "e4",
+    "text": "How many colours are there in a rainbow?",
+    "options": [
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "correctIndex": 2,
+    "difficulty": 1,
+    "explanation": "Its seven colours are red, orange, yellow, green, blue, indigo and violet.",
+    "category": "Science"
+  },
+  {
+    "id": "e5",
+    "text": "Which planet do we live on?",
+    "options": [
+      "Mars",
+      "Earth",
+      "Venus",
+      "Jupiter"
+    ],
+    "correctIndex": 1,
+    "difficulty": 1,
+    "explanation": "Earth is the third planet from the Sun and the only one known to support life.",
+    "category": "Science"
+  },
+  {
+    "id": "e6",
+    "text": "In which month do Muslims fast?",
+    "options": [
+      "Sha'ban",
+      "Ramadan",
+      "Shawwal",
+      "Rajab"
+    ],
+    "correctIndex": 1,
+    "difficulty": 1,
+    "explanation": "Ramadan is the ninth month of the Hijri calendar, and fasting in it is one of the pillars of Islam.",
+    "category": "Religion"
+  },
+  {
+    "id": "e7",
+    "text": "What do bees mainly make honey from?",
+    "options": [
+      "Flower nectar",
+      "Water",
+      "Leaves",
+      "Clay"
+    ],
+    "correctIndex": 0,
+    "difficulty": 1,
+    "explanation": "Bees collect nectar from flowers and turn it into honey inside the hive.",
+    "category": "Animals"
+  },
+  {
+    "id": "e8",
+    "text": "How many players does a football team have on the pitch?",
+    "options": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "correctIndex": 2,
+    "difficulty": 1,
+    "explanation": "Each team plays with eleven players, including the goalkeeper.",
+    "category": "Sport"
+  },
+  {
+    "id": "e9",
+    "text": "What is the largest ocean in the world?",
+    "options": [
+      "The Atlantic",
+      "The Indian Ocean",
+      "The Pacific",
+      "The Arctic Ocean"
+    ],
+    "correctIndex": 2,
+    "difficulty": 1,
+    "explanation": "The Pacific is the largest and deepest ocean, covering about a third of the Earth's surface.",
+    "category": "Geography"
+  },
+  {
+    "id": "e10",
+    "text": "On which continent is most of Egypt located?",
+    "options": [
+      "Asia",
+      "Africa",
+      "Europe",
+      "South America"
+    ],
+    "correctIndex": 1,
+    "difficulty": 1,
+    "explanation": "Most of Egypt is in north-east Africa; the Sinai Peninsula is in Asia.",
+    "category": "Geography"
+  },
+  {
+    "id": "e11",
+    "text": "Which gas do we need to breathe to stay alive?",
+    "options": [
+      "Oxygen",
+      "Nitrogen",
+      "Helium",
+      "Carbon dioxide"
+    ],
+    "correctIndex": 0,
+    "difficulty": 1,
+    "explanation": "The body's cells need oxygen to produce energy.",
+    "category": "Science"
+  },
+  {
+    "id": "e12",
+    "text": "How many legs does a spider have?",
+    "options": [
+      "6",
+      "8",
+      "10",
+      "4"
+    ],
+    "correctIndex": 1,
+    "difficulty": 1,
+    "explanation": "Spiders are arachnids with eight legs, while insects have six.",
+    "category": "Animals"
+  },
+  {
+    "id": "e13",
+    "text": "What is the official currency of Saudi Arabia?",
+    "options": [
+      "The dirham",
+      "The dinar",
+      "The riyal",
+      "The pound"
+    ],
+    "correctIndex": 2,
+    "difficulty": 1,
+    "explanation": "The Saudi riyal is the kingdom's official currency.",
+    "category": "General knowledge"
+  },
+  {
+    "id": "e14",
+    "text": "Which season comes after winter?",
+    "options": [
+      "Autumn",
+      "Summer",
+      "Spring",
+      "None"
+    ],
+    "correctIndex": 2,
+    "difficulty": 1,
+    "explanation": "The seasons go winter, spring, summer, autumn.",
+    "category": "General knowledge"
+  },
+  {
+    "id": "e15",
+    "text": "What is 9 × 9?",
+    "options": [
+      "72",
+      "81",
+      "90",
+      "99"
+    ],
+    "correctIndex": 1,
+    "difficulty": 1,
+    "explanation": "Nine times nine is eighty-one.",
+    "category": "Maths"
+  },
+  {
+    "id": "e16",
+    "text": "What is the longest river in Africa?",
+    "options": [
+      "The Congo",
+      "The Nile",
+      "The Niger",
+      "The Zambezi"
+    ],
+    "correctIndex": 1,
+    "difficulty": 1,
+    "explanation": "At about 6,650 km, the Nile is Africa's longest river.",
+    "category": "Geography"
+  },
+  {
+    "id": "e17",
+    "text": "Which animal is known as the ship of the desert?",
+    "options": [
+      "The horse",
+      "The camel",
+      "The elephant",
+      "The giraffe"
+    ],
+    "correctIndex": 1,
+    "difficulty": 1,
+    "explanation": "The camel copes with thirst and heat and can cover long distances across the desert.",
+    "category": "Animals"
+  },
+  {
+    "id": "e18",
+    "text": "How many letters are there in the Arabic alphabet?",
+    "options": [
+      "24",
+      "26",
+      "28",
+      "32"
+    ],
+    "correctIndex": 2,
+    "difficulty": 1,
+    "explanation": "The Arabic alphabet has twenty-eight letters, from alif to ya.",
+    "category": "Language"
+  },
+  {
+    "id": "e19",
+    "text": "What is the capital of France?",
+    "options": [
+      "Lyon",
+      "Paris",
+      "Marseille",
+      "Nice"
+    ],
+    "correctIndex": 1,
+    "difficulty": 1,
+    "explanation": "Paris is the capital and largest city of France, and home to the Eiffel Tower.",
+    "category": "Geography"
+  },
+  {
+    "id": "e20",
+    "text": "Which organ pumps blood around the human body?",
+    "options": [
+      "The lungs",
+      "The liver",
+      "The heart",
+      "The kidneys"
+    ],
+    "correctIndex": 2,
+    "difficulty": 1,
+    "explanation": "The heart is a muscle that pumps blood around the body through the blood vessels.",
+    "category": "Science"
+  },
+  {
+    "id": "m1",
+    "text": "Who wrote the \"Muqaddimah\"?",
+    "options": [
+      "Ibn Khaldun",
+      "Avicenna",
+      "Averroes",
+      "Al-Farabi"
+    ],
+    "correctIndex": 0,
+    "difficulty": 2,
+    "explanation": "Ibn Khaldun wrote it in the 14th century and is regarded as a pioneer of sociology.",
+    "category": "History"
+  },
+  {
+    "id": "m2",
+    "text": "What is the smallest planet in the Solar System?",
+    "options": [
+      "Mars",
+      "Mercury",
+      "Venus",
+      "Jupiter"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "Mercury is the smallest planet and the closest to the Sun (Pluto was reclassified as a dwarf planet in 2006).",
+    "category": "Science"
+  },
+  {
+    "id": "m3",
+    "text": "What is the chemical symbol for gold?",
+    "options": [
+      "Ag",
+      "Au",
+      "Gd",
+      "Go"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "Au comes from the Latin aurum; Ag is the symbol for silver.",
+    "category": "Science"
+  },
+  {
+    "id": "m4",
+    "text": "In which year was the first FIFA World Cup held?",
+    "options": [
+      "1926",
+      "1930",
+      "1934",
+      "1950"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "The first tournament was played in 1930 in Uruguay, which also won it.",
+    "category": "Sport"
+  },
+  {
+    "id": "m5",
+    "text": "What is the highest mountain in the world above sea level?",
+    "options": [
+      "Kilimanjaro",
+      "Everest",
+      "K2",
+      "Mont Blanc"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "Mount Everest, in the Himalayas, rises to about 8,849 metres.",
+    "category": "Geography"
+  },
+  {
+    "id": "m6",
+    "text": "How many bones are there in the adult human body?",
+    "options": [
+      "186",
+      "206",
+      "226",
+      "256"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "An adult skeleton has 206 bones; babies are born with more, some of which fuse as they grow.",
+    "category": "Science"
+  },
+  {
+    "id": "m7",
+    "text": "What is the capital of Canada?",
+    "options": [
+      "Toronto",
+      "Ottawa",
+      "Montreal",
+      "Vancouver"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "Ottawa is Canada's capital, although Toronto is its largest city.",
+    "category": "Geography"
+  },
+  {
+    "id": "m8",
+    "text": "Who painted the \"Mona Lisa\"?",
+    "options": [
+      "Michelangelo",
+      "Leonardo da Vinci",
+      "Raphael",
+      "Van Gogh"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "Leonardo da Vinci painted it in the early 16th century; it hangs in the Louvre.",
+    "category": "Arts"
+  },
+  {
+    "id": "m9",
+    "text": "What is the largest Arab country by area?",
+    "options": [
+      "Saudi Arabia",
+      "Algeria",
+      "Sudan",
+      "Libya"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "Algeria is the largest country in both the Arab world and Africa, at about 2.38 million km².",
+    "category": "Geography"
+  },
+  {
+    "id": "m10",
+    "text": "What is the fastest land animal?",
+    "options": [
+      "The lion",
+      "The cheetah",
+      "The gazelle",
+      "The horse"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "The cheetah can reach nearly 110 km/h over short distances.",
+    "category": "Animals"
+  },
+  {
+    "id": "m11",
+    "text": "Which gas is most abundant in the Earth's atmosphere?",
+    "options": [
+      "Oxygen",
+      "Nitrogen",
+      "Argon",
+      "Carbon dioxide"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "Nitrogen makes up about 78% of the air, oxygen about 21%.",
+    "category": "Science"
+  },
+  {
+    "id": "m12",
+    "text": "In which city is the University of al-Qarawiyyin?",
+    "options": [
+      "Marrakesh",
+      "Fez",
+      "Tunis",
+      "Cairo"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "Founded in Fez by Fatima al-Fihri in 859, it is one of the oldest universities in the world.",
+    "category": "History"
+  },
+  {
+    "id": "m13",
+    "text": "How many surahs are there in the Quran?",
+    "options": [
+      "110",
+      "114",
+      "120",
+      "99"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "The Quran has 114 surahs, from Al-Fatiha to An-Nas.",
+    "category": "Religion"
+  },
+  {
+    "id": "m14",
+    "text": "Which language does Google recommend first for building Android apps?",
+    "options": [
+      "Swift",
+      "Kotlin",
+      "Ruby",
+      "PHP"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "In 2019 Google announced that Android development would be \"Kotlin-first\".",
+    "category": "Technology"
+  },
+  {
+    "id": "m15",
+    "text": "What is the largest planet in the Solar System?",
+    "options": [
+      "Saturn",
+      "Jupiter",
+      "Neptune",
+      "Uranus"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "Jupiter is a gas giant more than twice as massive as all the other planets combined.",
+    "category": "Science"
+  },
+  {
+    "id": "m16",
+    "text": "Who developed the theory of relativity?",
+    "options": [
+      "Isaac Newton",
+      "Albert Einstein",
+      "Galileo Galilei",
+      "Nikola Tesla"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "Einstein published special relativity in 1905 and general relativity in 1915.",
+    "category": "Science"
+  },
+  {
+    "id": "m17",
+    "text": "What is the capital of Australia?",
+    "options": [
+      "Sydney",
+      "Melbourne",
+      "Canberra",
+      "Perth"
+    ],
+    "correctIndex": 2,
+    "difficulty": 2,
+    "explanation": "Canberra was chosen as a compromise between Sydney and Melbourne.",
+    "category": "Geography"
+  },
+  {
+    "id": "m18",
+    "text": "At what temperature does water boil at sea level?",
+    "options": [
+      "90 °C",
+      "100 °C",
+      "110 °C",
+      "120 °C"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "Pure water boils at 100 °C under normal atmospheric pressure.",
+    "category": "Science"
+  },
+  {
+    "id": "m19",
+    "text": "Which strait separates Morocco from Spain?",
+    "options": [
+      "The Strait of Hormuz",
+      "The Strait of Gibraltar",
+      "The Bab el-Mandeb Strait",
+      "The Bosphorus"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "The Strait of Gibraltar links the Mediterranean to the Atlantic and is about 14 km wide at its narrowest.",
+    "category": "Geography"
+  },
+  {
+    "id": "m20",
+    "text": "Which is the only mammal capable of true flight?",
+    "options": [
+      "The flying squirrel",
+      "The bat",
+      "The penguin",
+      "The ostrich"
+    ],
+    "correctIndex": 1,
+    "difficulty": 2,
+    "explanation": "Bats are the only mammals that truly fly; flying squirrels only glide.",
+    "category": "Animals"
+  },
+  {
+    "id": "h1",
+    "text": "In which year did Tariq ibn Ziyad cross into al-Andalus?",
+    "options": [
+      "711",
+      "732",
+      "756",
+      "800"
+    ],
+    "correctIndex": 0,
+    "difficulty": 3,
+    "explanation": "Tariq ibn Ziyad crossed in 711 the strait that now bears his name: Gibraltar comes from \"Jabal Tariq\".",
+    "category": "History"
+  },
+  {
+    "id": "h2",
+    "text": "What is the deepest known point in the oceans?",
+    "options": [
+      "The Mariana Trench",
+      "The Puerto Rico Trench",
+      "The Tonga Trench",
+      "The Java Trench"
+    ],
+    "correctIndex": 0,
+    "difficulty": 3,
+    "explanation": "The Challenger Deep, in the Mariana Trench in the Pacific, is almost 11 km deep.",
+    "category": "Geography"
+  },
+  {
+    "id": "h3",
+    "text": "Who wrote \"The Compendious Book on Calculation by Completion and Balancing\" (al-jabr)?",
+    "options": [
+      "Al-Khwarizmi",
+      "Al-Biruni",
+      "Ibn al-Haytham",
+      "Omar Khayyam"
+    ],
+    "correctIndex": 0,
+    "difficulty": 3,
+    "explanation": "Al-Khwarizmi laid the foundations of algebra, and the word \"algorithm\" comes from his name.",
+    "category": "History"
+  },
+  {
+    "id": "h4",
+    "text": "What is the atomic number of carbon?",
+    "options": [
+      "6",
+      "8",
+      "12",
+      "14"
+    ],
+    "correctIndex": 0,
+    "difficulty": 3,
+    "explanation": "A carbon nucleus has 6 protons; 12 is the mass number of its most common isotope.",
+    "category": "Science"
+  },
+  {
+    "id": "h5",
+    "text": "Who wrote the \"Book of Optics\" (Kitab al-Manazir), which revolutionised optics?",
+    "options": [
+      "Ibn al-Haytham",
+      "Al-Kindi",
+      "Al-Razi",
+      "Jabir ibn Hayyan"
+    ],
+    "correctIndex": 0,
+    "difficulty": 3,
+    "explanation": "Ibn al-Haytham showed through experiments that we see because light travels from objects into the eye.",
+    "category": "History"
+  },
+  {
+    "id": "h6",
+    "text": "Roughly how fast does light travel in a vacuum?",
+    "options": [
+      "300,000 km/s",
+      "150,000 km/s",
+      "30,000 km/s",
+      "3 million km/s"
+    ],
+    "correctIndex": 0,
+    "difficulty": 3,
+    "explanation": "Light travels at about 299,792 km per second.",
+    "category": "Science"
+  },
+  {
+    "id": "h7",
+    "text": "Which language has the most native speakers in the world?",
+    "options": [
+      "English",
+      "Spanish",
+      "Mandarin Chinese",
+      "Hindi"
+    ],
+    "correctIndex": 2,
+    "difficulty": 3,
+    "explanation": "Mandarin has the most native speakers; English has the most speakers overall.",
+    "category": "Language"
+  },
+  {
+    "id": "h8",
+    "text": "In which year did Granada, the last Muslim stronghold in al-Andalus, fall?",
+    "options": [
+      "1236",
+      "1453",
+      "1492",
+      "1517"
+    ],
+    "correctIndex": 2,
+    "difficulty": 3,
+    "explanation": "Boabdil surrendered Granada in 1492, the same year Christopher Columbus reached the Americas.",
+    "category": "History"
+  },
+  {
+    "id": "h9",
+    "text": "What is the largest hot desert in the world?",
+    "options": [
+      "The Rub' al Khali",
+      "The Sahara",
+      "The Gobi Desert",
+      "The Kalahari"
+    ],
+    "correctIndex": 1,
+    "difficulty": 3,
+    "explanation": "The Sahara is the largest hot desert; the largest desert of all is Antarctica.",
+    "category": "Geography"
+  },
+  {
+    "id": "h10",
+    "text": "What is the smallest country in the world by area?",
+    "options": [
+      "Monaco",
+      "Vatican City",
+      "San Marino",
+      "Malta"
+    ],
+    "correctIndex": 1,
+    "difficulty": 3,
+    "explanation": "Vatican City covers about 0.44 km² in the heart of Rome.",
+    "category": "Geography"
+  },
+  {
+    "id": "h11",
+    "text": "Who founded the Idrisid dynasty in Morocco?",
+    "options": [
+      "Idris I",
+      "Yusuf ibn Tashfin",
+      "Abd al-Mu'min",
+      "Moulay Ismail"
+    ],
+    "correctIndex": 0,
+    "difficulty": 3,
+    "explanation": "Idris ibn Abdallah founded the Idrisid dynasty in 788, the first independent Muslim state in Morocco.",
+    "category": "History"
+  },
+  {
+    "id": "h12",
+    "text": "How many chromosomes are there in a human body cell?",
+    "options": [
+      "23",
+      "44",
+      "46",
+      "48"
+    ],
+    "correctIndex": 2,
+    "difficulty": 3,
+    "explanation": "A body (somatic) cell has 46 chromosomes in 23 pairs; a sex cell has 23.",
+    "category": "Science"
+  },
+  {
+    "id": "h13",
+    "text": "Which planet takes the longest to spin once on its axis?",
+    "options": [
+      "Mercury",
+      "Venus",
+      "Mars",
+      "Neptune"
+    ],
+    "correctIndex": 1,
+    "difficulty": 3,
+    "explanation": "Venus takes about 243 Earth days to rotate once, longer than its year of 225 days.",
+    "category": "Science"
+  },
+  {
+    "id": "h14",
+    "text": "In which city was the United Nations Charter signed in 1945?",
+    "options": [
+      "New York",
+      "Geneva",
+      "San Francisco",
+      "London"
+    ],
+    "correctIndex": 2,
+    "difficulty": 3,
+    "explanation": "The Charter was signed in San Francisco on 26 June 1945 and came into force that October.",
+    "category": "History"
+  },
+  {
+    "id": "h15",
+    "text": "Which gas makes up most of the atmosphere of Mars?",
+    "options": [
+      "Nitrogen",
+      "Carbon dioxide",
+      "Methane",
+      "Oxygen"
+    ],
+    "correctIndex": 1,
+    "difficulty": 3,
+    "explanation": "Mars has a very thin atmosphere made of about 95% carbon dioxide.",
+    "category": "Science"
+  },
+  {
+    "id": "h16",
+    "text": "Who wrote \"Nuzhat al-Mushtaq\" and drew its famous map of the world?",
+    "options": [
+      "Al-Idrisi",
+      "Ibn Battuta",
+      "Al-Masudi",
+      "Yaqut al-Hamawi"
+    ],
+    "correctIndex": 0,
+    "difficulty": 3,
+    "explanation": "Al-Idrisi completed the work in 1154 for King Roger II of Sicily.",
+    "category": "History"
+  },
+  {
+    "id": "h17",
+    "text": "Which Moroccan traveller wrote the \"Rihla\" (Tuhfat al-Nuzzar)?",
+    "options": [
+      "Ibn Jubayr",
+      "Ibn Battuta",
+      "Leo Africanus",
+      "Ibn Fadlan"
+    ],
+    "correctIndex": 1,
+    "difficulty": 3,
+    "explanation": "Born in Tangier in 1304, Ibn Battuta travelled the Muslim world and beyond for nearly thirty years.",
+    "category": "History"
+  },
+  {
+    "id": "h18",
+    "text": "What is the unit of electric current?",
+    "options": [
+      "The volt",
+      "The ampere",
+      "The ohm",
+      "The watt"
+    ],
+    "correctIndex": 1,
+    "difficulty": 3,
+    "explanation": "The ampere measures current, the volt voltage, the ohm resistance and the watt power.",
+    "category": "Science"
+  },
+  {
+    "id": "h19",
+    "text": "In which year did a human first walk on the Moon?",
+    "options": [
+      "1965",
+      "1969",
+      "1972",
+      "1975"
+    ],
+    "correctIndex": 1,
+    "difficulty": 3,
+    "explanation": "Apollo 11 landed on the Moon on 20 July 1969, and Neil Armstrong was the first to walk on it.",
+    "category": "History"
+  },
+  {
+    "id": "h20",
+    "text": "What is the longest bone in the human body?",
+    "options": [
+      "The humerus",
+      "The femur",
+      "The tibia",
+      "The fibula"
+    ],
+    "correctIndex": 1,
+    "difficulty": 3,
+    "explanation": "The femur (thigh bone) is the longest and strongest bone in the body.",
+    "category": "Science"
+  }
+]

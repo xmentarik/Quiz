@@ -41,7 +41,7 @@ service cloud.firestore {
         && request.resource.data.keys().hasOnly(['creatorId', 'creatorName', 'language', 'payload', 'createdAt'])
         && request.resource.data.creatorId == request.auth.uid
         && validName(request.resource.data.creatorName)
-        && request.resource.data.language in ['ar', 'fr']
+        && request.resource.data.language in ['ar', 'fr', 'en']
         && request.resource.data.payload is string
         && request.resource.data.payload.size() < 200000
         && request.resource.data.createdAt == request.time;
