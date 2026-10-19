@@ -103,7 +103,7 @@ python3 tools/questions/generate_bank.py build
 
 ## Firebase في هذا المشروع
 
-- المشروع: `conversation-en-fr` (ملف `.firebaserc`).
+- المشروع: `road-to-a-million-b4c41` (ملف `.firebaserc`)، مستقل عن مشاريعك الأخرى. قاعدة Firestore في `europe-west1`.
 - **`app/google-services.json` غير موجود في GitHub عمداً،** لأن المستودع عام والملف يحتوي على مفاتيح API. انسخه يدوياً إلى مجلد `app/` على جهازك.
 - في Firebase Console: فعّل **Anonymous** في Authentication، وأنشئ قاعدة **Firestore**، ثم انشر القواعد: `firebase deploy --only firestore:rules`.
 - إذا كان مفتاح API مقيّداً في Google Cloud Console، أضف إليه الحزمة `com.xmentarik.quiz` مع بصمة SHA-1 الخاصة بتوقيع التطبيق.
