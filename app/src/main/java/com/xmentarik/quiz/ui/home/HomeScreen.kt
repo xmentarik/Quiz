@@ -24,7 +24,6 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.Switch
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -52,7 +51,6 @@ fun HomeScreen(
     state: QuizUiState,
     stats: PlayerStats,
     feedbackSettings: FeedbackSettings,
-    onUseAiChange: (Boolean) -> Unit,
     onTopicChange: (Int?) -> Unit,
     onPlay: () -> Unit,
     onSoundChange: (Boolean) -> Unit,
@@ -89,7 +87,6 @@ fun HomeScreen(
 
         StatsCard(stats)
         TopicCard(state, onTopicChange)
-        AiCard(state, onUseAiChange)
         FeedbackRow(feedbackSettings, onSoundChange, onMusicChange, onVibrationChange)
 
         Button(
@@ -243,37 +240,6 @@ private fun TopicCard(state: QuizUiState, onTopicChange: (Int?) -> Unit) {
                         enabled = !state.loading,
                     )
                 }
-            }
-        }
-    }
-}
-
-@Composable
-private fun AiCard(
-    state: QuizUiState,
-    onUseAiChange: (Boolean) -> Unit,
-) {
-    Card(
-        colors = CardDefaults.cardColors(containerColor = QuizColors.OptionBackground),
-        modifier = Modifier.fillMaxWidth(),
-    ) {
-        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Column(Modifier.weight(1f)) {
-                    Text("✨ " + stringResource(R.string.home_ai_title), fontWeight = FontWeight.Bold)
-                    Text(
-                        text = stringResource(
-                            if (state.aiAvailable) R.string.home_ai_subtitle else R.string.home_ai_missing_key,
-                        ),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = QuizColors.TextSecondary,
-                    )
-                }
-                Switch(
-                    checked = state.useAi,
-                    onCheckedChange = onUseAiChange,
-                    enabled = state.aiAvailable && !state.loading,
-                )
             }
         }
     }

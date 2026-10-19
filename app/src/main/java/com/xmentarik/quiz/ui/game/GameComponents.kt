@@ -256,13 +256,3 @@ fun RevealPanel(
         }
     }
 }
-
-@Composable
-fun NoticeBanner(text: String, onDismiss: () -> Unit) {
-    Surface(shape = RoundedCornerShape(12.dp), color = QuizColors.Selected.copy(alpha = 0.2f)) {
-        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(start = 12.dp)) {
-            Text(text, style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(1f))
-            TextButton(onClick = onDismiss) { Text(stringResource(R.string.ok)) }
-        }
-    }
-}

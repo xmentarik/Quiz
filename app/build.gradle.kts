@@ -13,7 +13,7 @@ if (file("google-services.json").exists()) {
     apply(plugin = "com.google.gms.google-services")
 }
 
-// Gemini settings are read from local.properties so the key never lands in git.
+// Optional local settings (PRIVACY_POLICY_URL, REPORT_EMAIL) from local.properties, never committed.
 val localProperties = Properties().apply {
     val file = rootProject.file("local.properties")
     if (file.exists()) file.inputStream().use { load(it) }
@@ -30,8 +30,6 @@ android {
         versionCode = 1
         versionName = "0.1.0"
 
-        buildConfigField("String", "GEMINI_API_KEY", "\"${localProperties.getProperty("GEMINI_API_KEY", "")}\"")
-        buildConfigField("String", "GEMINI_MODEL", "\"${localProperties.getProperty("GEMINI_MODEL", "gemini-flash-latest")}\"")
         // The developer's Google Sites page (a copy lives in docs/privacy-policy.html); override in local.properties.
         buildConfigField(
             "String",

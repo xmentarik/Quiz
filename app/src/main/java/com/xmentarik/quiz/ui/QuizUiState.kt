@@ -11,8 +11,6 @@ enum class LifelineDialog { AUDIENCE, FRIEND }
 data class QuizUiState(
     val screen: Screen = Screen.HOME,
     val loading: Boolean = false,
-    val aiAvailable: Boolean = false,
-    val useAi: Boolean = false,
     /** Index into [com.xmentarik.quiz.data.AppLanguage.topics]; null plays all topics. */
     val topicIndex: Int? = null,
     val game: GameState? = null,
@@ -23,7 +21,6 @@ data class QuizUiState(
     val secondsLeft: Int? = null,
     val dialog: LifelineDialog? = null,
     val confirmWalkAway: Boolean = false,
-    val aiFallbackNotice: Boolean = false,
     val newRecord: Boolean = false,
     /** Report dialog for the current question. */
     val reportOpen: Boolean = false,

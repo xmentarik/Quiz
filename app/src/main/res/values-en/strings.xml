@@ -7,9 +7,6 @@
     <string name="home_best_prize">Best score: %1$s</string>
     <string name="home_games_played">Games played: %1$d</string>
     <string name="home_million_wins">Millions won: %1$d</string>
-    <string name="home_ai_title">New AI questions</string>
-    <string name="home_ai_subtitle">Gemini writes fresh questions on the topic you pick</string>
-    <string name="home_ai_missing_key">Add GEMINI_API_KEY to local.properties to turn this on</string>
     <string name="home_topic">Topic</string>
     <string name="home_play">Play</string>
     <string name="home_sound">Sound effects</string>
@@ -33,7 +30,6 @@
     <string name="game_walk_away_body">You keep %1$s and the game ends.</string>
     <string name="game_confirm_walk_away">Yes, walk away</string>
     <string name="game_keep_playing">Keep playing</string>
-    <string name="game_ai_fallback">Couldn\'t generate AI questions, so you\'ll play with the built-in ones.</string>
 
     <!-- Lifelines -->
     <string name="lifeline_fifty">50:50</string>

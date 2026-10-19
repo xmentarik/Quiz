@@ -50,7 +50,6 @@ fun GameScreen(
     onShowResult: () -> Unit,
     /** Non-null when a rewarded ad can save the game. */
     onSecondChance: (() -> Unit)?,
-    onDismissAiNotice: () -> Unit,
     onOpenReport: () -> Unit,
     onSubmitReport: (ReportReason, String) -> Unit,
     onReportedByEmail: (String) -> Unit,
@@ -70,7 +69,6 @@ fun GameScreen(
             .padding(horizontal = 16.dp, vertical = 12.dp),
         verticalArrangement = Arrangement.spacedBy(14.dp),
     ) {
-        if (state.aiFallbackNotice) NoticeBanner(stringResource(R.string.game_ai_fallback), onDismissAiNotice)
 
         GameHeader(game = game, secondsLeft = state.secondsLeft, onLadderClick = { showLadder = true })
         LifelineRow(game = game, enabled = state.lockedOption == null, onLifeline = onLifeline)

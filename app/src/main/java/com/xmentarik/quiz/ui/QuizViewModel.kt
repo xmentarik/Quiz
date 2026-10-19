@@ -8,11 +8,9 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.xmentarik.quiz.QuizApplication
 import com.xmentarik.quiz.audio.FeedbackSettings
 import com.xmentarik.quiz.data.AppLanguage
-import com.xmentarik.quiz.data.LoadedGame
 import com.xmentarik.quiz.data.QuestionSet
 import com.xmentarik.quiz.data.PlayerStats
 import com.xmentarik.quiz.data.QuestionRepository
-import com.xmentarik.quiz.data.QuestionSource
 import com.xmentarik.quiz.data.SettingsStore
 import com.xmentarik.quiz.data.StatsStore
 import com.xmentarik.quiz.game.GameEngine
@@ -47,9 +45,6 @@ class QuizViewModel(
 
     private val _state = MutableStateFlow(
         QuizUiState(
-            aiAvailable = repository.aiAvailable,
-            // The bundled bank is large enough; AI questions are opt-in to save the Gemini quota.
-            useAi = false,
             online = OnlineUiState(
                 available = online.isAvailable,
                 playerName = settingsStore.playerName,
@@ -68,8 +63,6 @@ class QuizViewModel(
     private var gameStartedAt = 0L
     /** Kept until the server accepts it, so a network failure can be retried from the results screen. */
     private var pendingChallengeResult: Pair<String, ChallengeResult>? = null
-
-    fun setUseAi(enabled: Boolean) = _state.update { it.copy(useAi = enabled && it.aiAvailable) }
 
     fun setTopic(index: Int?) = _state.update { it.copy(topicIndex = index) }
 
@@ -93,21 +86,19 @@ class QuizViewModel(
         _state.update { it.copy(loading = true) }
         loadJob = viewModelScope.launch {
             try {
-                val loaded = loadQuestions()
-                beginGame(loaded.questions, challenge = null, aiFallback = loaded.source == QuestionSource.LOCAL_AFTER_AI_FAILURE)
+                beginGame(loadQuestions(), challenge = null)
             } finally {
                 _state.update { it.copy(loading = false) }
             }
         }
     }
 
-    private suspend fun loadQuestions(): LoadedGame {
-        val current = _state.value
-        val topic = current.topicIndex?.takeIf { it in language.value.topics.indices }
-        return repository.loadGame(current.useAi, topic, language.value, settingsStore.recentQuestionIds.toSet())
+    private suspend fun loadQuestions(): QuestionSet {
+        val topic = _state.value.topicIndex?.takeIf { it in language.value.topics.indices }
+        return repository.loadGame(topic, language.value, settingsStore.recentQuestionIds.toSet())
     }
 
-    private fun beginGame(questions: QuestionSet, challenge: String?, aiFallback: Boolean = false) {
+    private fun beginGame(questions: QuestionSet, challenge: String?) {
         // AI questions get fresh ids each time, so only bundled ones are worth remembering.
         settingsStore.rememberQuestions(questions.main.map { it.id }.filter { !it.startsWith("ai-") })
         gameRecorded = false
@@ -121,7 +112,6 @@ class QuizViewModel(
                 dialog = null,
                 confirmWalkAway = false,
                 newRecord = false,
-                aiFallbackNotice = aiFallback,
                 activeChallenge = challenge,
                 reportOpen = false,
                 reportStatus = null,
@@ -187,10 +177,10 @@ class QuizViewModel(
     /** Builds a game with the current settings, publishes it and starts playing it. */
     fun createChallenge() = onlineCall { current ->
         val name = current.playerName ?: return@onlineCall
-        val loaded = loadQuestions()
-        val code = online.createChallenge(name, ChallengePayload.of(loaded.questions, language.value.code))
+        val questions = loadQuestions()
+        val code = online.createChallenge(name, ChallengePayload.of(questions, language.value.code))
         updateOnline { it.copy(myChallenges = settingsStore.rememberChallenge(code)) }
-        beginGame(loaded.questions, challenge = code)
+        beginGame(questions, challenge = code)
     }
 
     fun joinChallenge() {
@@ -394,8 +384,6 @@ class QuizViewModel(
     fun markReported(questionId: String) = _state.update {
         it.copy(reportOpen = false, reportStatus = null, reportedQuestions = it.reportedQuestions + questionId)
     }
-
-    fun dismissAiNotice() = _state.update { it.copy(aiFallbackNotice = false) }
 
     fun goHome() {
         stopTimer()

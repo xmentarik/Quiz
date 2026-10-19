@@ -81,7 +81,6 @@ fun QuizApp(viewModel: QuizViewModel, ads: AdsManager) {
                         } else {
                             null
                         },
-                        onDismissAiNotice = viewModel::dismissAiNotice,
                         onOpenReport = viewModel::openReport,
                         onSubmitReport = viewModel::submitReport,
                         onReportedByEmail = viewModel::markReported,
@@ -120,7 +119,6 @@ fun QuizApp(viewModel: QuizViewModel, ads: AdsManager) {
                         state = state,
                         stats = stats,
                         feedbackSettings = feedbackSettings,
-                        onUseAiChange = viewModel::setUseAi,
                         onTopicChange = viewModel::setTopic,
                         onPlay = viewModel::startGame,
                         onSoundChange = viewModel::setSoundEnabled,

@@ -7,9 +7,6 @@
     <string name="home_best_prize">أفضل رصيد: %1$s</string>
     <string name="home_games_played">عدد المباريات: %1$d</string>
     <string name="home_million_wins">مرات الفوز بالمليون: %1$d</string>
-    <string name="home_ai_title">أسئلة جديدة بالذكاء الاصطناعي</string>
-    <string name="home_ai_subtitle">يولّد Gemini أسئلة لا تتكرر في الموضوع الذي تختاره</string>
-    <string name="home_ai_missing_key">أضف GEMINI_API_KEY في ملف local.properties لتفعيل هذه الميزة</string>
     <string name="home_topic">الموضوع</string>
     <string name="home_play">ابدأ اللعب</string>
     <string name="home_sound">المؤثرات</string>
@@ -33,7 +30,6 @@
     <string name="game_walk_away_body">ستحتفظ بـ %1$s وتنتهي اللعبة.</string>
     <string name="game_confirm_walk_away">نعم، انسحب</string>
     <string name="game_keep_playing">أكمل اللعب</string>
-    <string name="game_ai_fallback">تعذّر توليد أسئلة بالذكاء الاصطناعي، سنلعب بأسئلة التطبيق.</string>
 
     <!-- Lifelines -->
     <string name="lifeline_fifty">50:50</string>

@@ -7,9 +7,6 @@
     <string name="home_best_prize">Meilleur gain : %1$s</string>
     <string name="home_games_played">Parties jouées : %1$d</string>
     <string name="home_million_wins">Millions gagnés : %1$d</string>
-    <string name="home_ai_title">Nouvelles questions par IA</string>
-    <string name="home_ai_subtitle">Gemini génère des questions inédites sur le thème de votre choix</string>
-    <string name="home_ai_missing_key">Ajoutez GEMINI_API_KEY dans local.properties pour activer cette fonction</string>
     <string name="home_topic">Thème</string>
     <string name="home_play">Jouer</string>
     <string name="home_sound">Effets</string>
@@ -33,7 +30,6 @@
     <string name="game_walk_away_body">Vous repartez avec %1$s et la partie s\'arrête.</string>
     <string name="game_confirm_walk_away">Oui, je m\'arrête</string>
     <string name="game_keep_playing">Continuer</string>
-    <string name="game_ai_fallback">Impossible de générer des questions par IA, place aux questions de l\'application.</string>
 
     <!-- Lifelines -->
     <string name="lifeline_fifty">50:50</string>
