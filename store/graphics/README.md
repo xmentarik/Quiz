@@ -18,3 +18,13 @@ Regenerate:
 python3 tools/store_assets/build_pages.py <pages_dir> <node_modules>/@fontsource
 CHROME_PATH=<chromium> node tools/store_assets/capture.js <pages_dir> store/graphics
 ```
+
+## Promo video (`store/video/`)
+
+`promo-<lang>.mp4`: 32 s, 1920×1080, 30 fps, H.264 + AAC (soundtrack mixed from the app's own sounds).
+`thumbnail-<lang>.jpg`: 1280×720 YouTube thumbnail. Upload the video to YouTube (Public or Unlisted, ads off)
+and paste its URL in Play Console → Main store listing → Video.
+
+```sh
+CHROME_PATH=<chromium> python3 tools/store_assets/build_video.py <work_dir> <node_modules>/@fontsource store/video [ar fr en]
+```

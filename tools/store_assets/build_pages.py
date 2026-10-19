@@ -12,8 +12,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-OUT = Path(sys.argv[1])
-FONTS = Path(sys.argv[2])
+OUT = FONTS = None  # set from the command line (or by build_video.py)
 LANGS = ("ar", "fr", "en")
 RES = {"ar": "values", "fr": "values-fr", "en": "values-en"}
 LABELS = {"ar": ["أ", "ب", "ج", "د"], "fr": list("ABCD"), "en": list("ABCD")}
@@ -366,4 +365,6 @@ def build():
     (OUT / "manifest.json").write_text(json.dumps(manifest, indent=1))
     print(len(manifest), "pages")
 
-build()
+if __name__ == "__main__":
+    OUT, FONTS = Path(sys.argv[1]), Path(sys.argv[2])
+    build()
